@@ -8,9 +8,13 @@ package eCheque;
 
 import javax.crypto.SecretKey;
 import junit.framework.TestCase;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.nullValue;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -61,35 +65,38 @@ public class AESCryptTests {
     public void testGenerateRandomAESKey() throws Exception  {
         SecretKey secretKey1 = aesCrypt.GenerateRandomAESKey();
         SecretKey secretKey2 = aesCrypt.GenerateRandomAESKey();
-        assertNotNull(secretKey1);
-        assertNotNull(secretKey2);
+        assertThat(secretKey1, not(nullValue()));
+        assertThat(secretKey2, not(nullValue()));
         assertThat("Generated keys are not the same", secretKey1.getEncoded(), is(not(secretKey2.getEncoded())));
     }
     
     @Test
     public void testAESKeyUsingPassword() {
         String password = "password1234!";
-        SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
-        System.out.println(secretKey.getEncoded());
+        testAESKey(password);
     }
 
     
     @Test(expected = IllegalArgumentException.class) 
     public void testAESKeyUsingZeroLengthPassword() {
         String password = "";
-        SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
-        
+        testAESKey(password);        
     }
     
     @Test
     public void testAESKeyUsingLongPassword() {
         String password = "ThisPasswordIs57CharactersLongAndWillStayThatWayForAWhile";
-        SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
+        testAESKey(password);
     }
     
     @Test
     public void testAESKeyUSingOneLengthPassword() {
         String password = "1";
+        testAESKey(password);
+    }
+    
+    private void testAESKey(String password) {
         SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
+        assertThat(secretKey, not(nullValue()));         
     }
 }
