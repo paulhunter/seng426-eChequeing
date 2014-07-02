@@ -11,6 +11,14 @@ tmp/
 *.bak
 *.swp
 *~.nib
+*.class
+private.xml
+build.xml
+build-impl.xml
+genfiles.properties
+private.properties
+private.xml
+project.properties
 local.properties
 .classpath
 .settings/
