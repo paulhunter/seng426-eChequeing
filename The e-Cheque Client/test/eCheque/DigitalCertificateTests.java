@@ -23,15 +23,14 @@ import java.security.*;
  */
 public class DigitalCertificateTests {
 
-    public static Random rand;
-    public static final int maxStringLength = 100;
+    public static Random rand = new Random();;
 
     public DigitalCertificateTests() {
     }
 
     @BeforeClass
     public static void setUpClass() {
-        rand = new Random();
+
     }
 
     @AfterClass
@@ -56,7 +55,7 @@ public class DigitalCertificateTests {
         DigitalCertificate subject = new DigitalCertificate();
         String originalValue = subject.getHolderName();
         //We want to generate a name up to 100 characters that is atleast 1 character long.
-        String newValue = GenerateRandomAlphaNumString(rand.nextInt(maxStringLength) + 1);
+        String newValue = TestHelper.GenerateRandomAlphaNumString();
         assertThat("Current value and Generate value are not equal.", originalValue, is(not(newValue)));
 
         subject.setHolderName(newValue);
@@ -69,7 +68,7 @@ public class DigitalCertificateTests {
         DigitalCertificate subject = new DigitalCertificate();
         String originalValue = subject.getSubject();
         //We want to generate a name up to 100 characters that is atleast 1 character long.
-        String newValue = GenerateRandomAlphaNumString(rand.nextInt(maxStringLength) + 1);
+        String newValue = TestHelper.GenerateRandomAlphaNumString();
         assertThat("Current value and Generate value are not equal.", originalValue, is(not(newValue)));
 
         subject.setSubject(newValue);
@@ -82,7 +81,7 @@ public class DigitalCertificateTests {
         DigitalCertificate subject = new DigitalCertificate();
         String originalValue = subject.getIssuer();
         //We want to generate a name up to 100 characters that is atleast 1 character long.
-        String newValue = GenerateRandomAlphaNumString(rand.nextInt(maxStringLength) + 1);
+        String newValue = TestHelper.GenerateRandomAlphaNumString();
         assertThat("Current value and Generate value are not equal.", originalValue, is(not(newValue)));
 
         subject.setIssuer(newValue);
@@ -95,7 +94,7 @@ public class DigitalCertificateTests {
         DigitalCertificate subject = new DigitalCertificate();
         String originalValue = subject.getSerialNumber();
         //We want to generate a name up to 100 characters that is atleast 1 character long.
-        String newValue = GenerateRandomAlphaNumString(rand.nextInt(maxStringLength) + 1);
+        String newValue = TestHelper.GenerateRandomAlphaNumString();
         assertThat("Current value and Generate value are not equal.", originalValue, is(not(newValue)));
 
         subject.setSerialNumber(newValue);
@@ -108,7 +107,7 @@ public class DigitalCertificateTests {
         DigitalCertificate subject = new DigitalCertificate();
         String originalValue = subject.getValidFrom();
         //We want to generate a name up to 100 characters that is atleast 1 character long.
-        String newValue = GenerateRandomAlphaNumString(rand.nextInt(maxStringLength) + 1);
+        String newValue = TestHelper.GenerateRandomAlphaNumString();
         assertThat("Current value and Generate value are not equal.", originalValue, is(not(newValue)));
 
         subject.setValidFrom(newValue);
@@ -121,7 +120,7 @@ public class DigitalCertificateTests {
         DigitalCertificate subject = new DigitalCertificate();
         String originalValue = subject.getValidTo();
         //We want to generate a name up to 100 characters that is atleast 1 character long.
-        String newValue = GenerateRandomAlphaNumString(rand.nextInt(maxStringLength) + 1);
+        String newValue = TestHelper.GenerateRandomAlphaNumString();
         assertThat("Current value and Generate value are not equal.", originalValue, is(not(newValue)));
 
         subject.setValidTo(newValue);
@@ -152,7 +151,7 @@ public class DigitalCertificateTests {
     @Test
     public void testGetSetIssuerSignatur() {
         DigitalCertificate subject = new DigitalCertificate();
-        byte[] newValue = GenerateRandomAlphaNumByteSequence(maxStringLength);
+        byte[] newValue = TestHelper.GenerateRandomAlphaNumByteSequence();
         assertThat("Current signature is not equal to generated value.", newValue, is(not(subject.getIssuerSignature())));
 
         subject.setIssuerSignature(newValue);
@@ -179,26 +178,4 @@ public class DigitalCertificateTests {
         assertThat("<byte[]>IssuerSignature is null", null, is(subject.getIssuerSignature()));
     }
 
-    private static final String CharSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-    private String GenerateRandomAlphaNumString(int length) {
-        return new String(GenerateRandomAlphaNumSequence(length));
-    }
-
-    private byte[] GenerateRandomAlphaNumByteSequence(int length) {
-        char[] seq = GenerateRandomAlphaNumSequence(length);
-        byte[] result = new byte[length];
-        for (int i = 0; i < length; i++) {
-            result[i] = (byte) seq[i];
-        }
-        return result;
-    }
-
-    private char[] GenerateRandomAlphaNumSequence(int length) {
-        char[] text = new char[length];
-        for (int i = 0; i < length; i++) {
-            text[i] = CharSet.charAt(rand.nextInt(CharSet.length()));
-        }
-        return text;
-    }
 }
