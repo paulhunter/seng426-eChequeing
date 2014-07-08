@@ -6,13 +6,15 @@ package eCheque;
  * and open the template in the editor.
  */
 
+import java.security.AlgorithmParameters;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import junit.framework.TestCase;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import org.junit.After;
@@ -94,6 +96,40 @@ public class AESCryptTests {
         String password = "1";
         testAESKey(password);
     }
+    
+    @Test
+    public void testInitializeCipherEncryptMode() throws Exception {
+        int mode = 0;
+        testInitializeCipher(mode);
+    }
+    
+    @Test
+    public void testInitializeCipherDecryptMode() throws Exception {
+        int mode = 1;
+        testInitializeCipher(mode);
+    }
+    
+    @Test
+    public void testInitializeCipherWrapMode() throws Exception {
+        int mode = 2;
+        testInitializeCipher(mode);
+    }
+    
+    @Test
+    public void testInitializeCipherUnwrapMode() throws Exception {
+        int mode = 3;
+        testInitializeCipher(mode);
+    }
+        
+    private void testInitializeCipher(int mode) throws Exception {
+        String algoType = "AES";
+        Key key = KeyGenerator.getInstance(algoType).generateKey();
+        Cipher cipher = aesCrypt.initializeCipher(key, mode);
+
+        assertThat(cipher, not(nullValue()));
+        assertThat(cipher.getAlgorithm(), is(equalTo(algoType)));
+    }
+    
     
     private void testAESKey(String password) {
         SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
