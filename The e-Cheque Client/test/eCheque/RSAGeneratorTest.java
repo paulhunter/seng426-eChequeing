@@ -20,13 +20,13 @@ import org.junit.Test;
 
 /**
  *
- * @author jaguz_000
+ * @author Justin Guze
  */
-public class RSAGeneratorTests {
+public class RSAGeneratorTest {
     
     RSAGenerator rsaGenerator;
     
-    public RSAGeneratorTests() {
+    public RSAGeneratorTest() {
     }
     
     @BeforeClass

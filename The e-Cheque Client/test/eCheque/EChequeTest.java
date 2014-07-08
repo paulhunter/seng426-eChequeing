@@ -17,13 +17,13 @@ import org.junit.Test;
 
 /**
  *
- * @author jaguz_000
+ * @author Justin Guze
  */
-public class EChequeTests {
+public class EChequeTest {
     
     public ECheque eCheque;
     
-    public EChequeTests() {
+    public EChequeTest() {
     }
     
     @BeforeClass
@@ -42,22 +42,8 @@ public class EChequeTests {
     @After
     public void tearDown() {
         eCheque = null;
-    }
+    }   
     
-//         private String accountholder;
-//     private String accountNumber;
-//     private String bankname;
-//     private String payToOrderOf ;
-//     private String amountofMony;
-//     private String currencytype;
-//     private String chequeNumber;
-//     private boolean guaranteed;
-//     private String earnday;
-//     private byte[] banksignature;
-//     private byte[] drawersiganure;
-//     
-//     
-
     /*
      * Test Methods
      */

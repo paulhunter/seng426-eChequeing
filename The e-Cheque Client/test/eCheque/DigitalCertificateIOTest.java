@@ -13,7 +13,7 @@ import java.nio.file.Files;
  /*
  * @author Paul Hunter
  */
-public class DigitalCertificateIOTests {
+public class DigitalCertificateIOTest {
     
     public static Random rand;
     
@@ -23,7 +23,7 @@ public class DigitalCertificateIOTests {
     
     public static File writeOnlyDir;
     
-    public DigitalCertificateIOTests() {
+    public DigitalCertificateIOTest() {
     }
 
     @BeforeClass

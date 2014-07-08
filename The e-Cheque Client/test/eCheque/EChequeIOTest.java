@@ -17,7 +17,7 @@ import java.nio.file.Files;
  *
  * @author Paul Hunter
  */
-public class EChequeIOTests {
+public class EChequeIOTest {
     /*
     
     This Suite of Test Cases ensures the form and function of the EChequeIO 
@@ -32,7 +32,7 @@ public class EChequeIOTests {
     
     public static File writeOnlyDir;
     
-    public EChequeIOTests() {
+    public EChequeIOTest() {
     }
 
     @BeforeClass

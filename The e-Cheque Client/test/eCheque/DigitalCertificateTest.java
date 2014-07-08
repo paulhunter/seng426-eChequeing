@@ -21,11 +21,11 @@ import java.security.*;
 /*
  * @author Paul Hunter
  */
-public class DigitalCertificateTests {
+public class DigitalCertificateTest {
 
     public static Random rand = new Random();;
 
-    public DigitalCertificateTests() {
+    public DigitalCertificateTest() {
     }
 
     @BeforeClass
