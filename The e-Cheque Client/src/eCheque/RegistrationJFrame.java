@@ -507,7 +507,7 @@ public class RegistrationJFrame extends javax.swing.JFrame {
                                             }
                                     }
                                     else{
-                                        JOptionPane.showMessageDialog(null,"Certificate issuer URl or IP can not be empty", "User Error", JOptionPane.ERROR_MESSAGE);
+                                        JOptionPane.showMessageDialog(null,"Certificate issuer URL or IP can not be empty", "User Error", JOptionPane.ERROR_MESSAGE);
                                     }
                                 } 
                                 else{
