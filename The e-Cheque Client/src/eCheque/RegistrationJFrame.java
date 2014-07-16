@@ -350,11 +350,11 @@ public class RegistrationJFrame extends javax.swing.JFrame
         wallet.mkdirs();
         wallet = new File(eWalletPath + "/Out going");
         wallet.mkdirs();
-        wallet = new File(eWalletPath + "/Security Tools ");
+        wallet = new File(eWalletPath + "/Security Tools");
         wallet.mkdirs();
-        wallet = new File(eWalletPath + "/My Cheques ");
+        wallet = new File(eWalletPath + "/My Cheques");
         wallet.mkdirs();
-        wallet = new File(eWalletPath + "/History ");
+        wallet = new File(eWalletPath + "/History");
         wallet.mkdirs();
 
         pathFlag = true;
