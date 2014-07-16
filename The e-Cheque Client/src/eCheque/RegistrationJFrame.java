@@ -25,18 +25,28 @@ import javax.swing.JFileChooser;
 import java.security.*;
 import java.io.File;
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationJFrame extends javax.swing.JFrame
 {
 
     private boolean pathFlag;
     private String eWalletPath;
+    private static final String IPADDRESS_PATTERN =
+            "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+            + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+            + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+            + "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
+    private Pattern pattern;
+    private Matcher matcher;
 
     /**
      * Creates new form RegistrationFrame
      */
     public RegistrationJFrame()
     {
+        pattern = Pattern.compile(IPADDRESS_PATTERN);
         try
         {
             //TrendyLookAndFeel tlf = new TrendyLookAndFeel();
@@ -345,19 +355,28 @@ public class RegistrationJFrame extends javax.swing.JFrame
 // TODO add your handling code here:
 
         eWalletPath = getWalletLoaction("Set e-Wallet Location");
-        File wallet;
-        wallet = new File(eWalletPath + "/In Coming");
-        wallet.mkdirs();
-        wallet = new File(eWalletPath + "/Out going");
-        wallet.mkdirs();
-        wallet = new File(eWalletPath + "/Security Tools");
-        wallet.mkdirs();
-        wallet = new File(eWalletPath + "/My Cheques");
-        wallet.mkdirs();
-        wallet = new File(eWalletPath + "/History");
-        wallet.mkdirs();
+        if (!eWalletPath.isEmpty())
+        {
+            File wallet;
+            wallet = new File(eWalletPath + "/In Coming");
+            wallet.mkdirs();
+            wallet = new File(eWalletPath + "/Out going");
+            wallet.mkdirs();
+            wallet = new File(eWalletPath + "/Security Tools");
+            wallet.mkdirs();
+            wallet = new File(eWalletPath + "/My Cheques");
+            wallet.mkdirs();
+            wallet = new File(eWalletPath + "/History");
+            wallet.mkdirs();
 
-        pathFlag = true;
+            pathFlag = true;
+        }
+    }
+
+    public boolean validateIP(final String ip)
+    {
+        matcher = pattern.matcher(ip);
+        return matcher.matches();
     }
 
     private void jBRFRegisterMouseClicked(java.awt.event.MouseEvent evt)
@@ -390,7 +409,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
         if (bankName.length() != 0)
         {
 
-            if (bankURL.length() != 0)
+            if (validateIP(bankURL))
             {
 
                 if (clientName.length() != 0)
@@ -402,7 +421,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
                         if (digitalCIssuer.length() != 0)
                         {
 
-                            if (digitalCURL.length() != 0)
+                            if (validateIP(digitalCURL))
                             {
 
                                 if (userName.length() != 0)
@@ -526,7 +545,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                 }
                             } else
                             {
-                                JOptionPane.showMessageDialog(null, "Certificate issuer URL or IP can not be empty", "User Error", JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Certificate issuer URL or IP is invalid", "User Error", JOptionPane.ERROR_MESSAGE);
                             }
                         } else
                         {
@@ -544,7 +563,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
                 }
             } else
             {
-                JOptionPane.showMessageDialog(null, "Bank URL or IP address can not be empty", "User Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Bank URL or IP address is invalid", "User Error", JOptionPane.ERROR_MESSAGE);
             }
         } else
         {
