@@ -407,7 +407,7 @@ public class ElectronicChequeJFrame extends javax.swing.JFrame {
            jBActivaton.setEnabled(true);
            jTUserName.setEnabled(true);
            jTPassword.setEnabled(true);
-        
+           jBConfigure.setEnabled(false);
             
         }
         catch(IOException exp){
