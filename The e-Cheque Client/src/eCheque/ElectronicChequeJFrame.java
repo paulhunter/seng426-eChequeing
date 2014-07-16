@@ -45,8 +45,7 @@ public class ElectronicChequeJFrame extends javax.swing.JFrame {
             //TrendyLookAndFeel tlf = new TrendyLookAndFeel();
             //tlf.setCurrentTheme( new com.Trendy.swing.plaf.Themes.TrendyOrangeTheme());
             //UIManager.setLookAndFeel(tlf);
-            UIManager.setLookAndFeel(
-            UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName());
         }
         catch(Exception e){
             
