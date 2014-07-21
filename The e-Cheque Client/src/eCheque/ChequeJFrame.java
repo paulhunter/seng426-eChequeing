@@ -627,7 +627,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
                                    
                                    //Save the cheque after you sign it
                                    EChequeIO drawCheque = new EChequeIO();
-                                   drawCheque.savecheque(chequeObj,eChequeReg.getEWalletLoaction()+"\\My Cheques\\"+chequeObj.getchequeNumber()+".sec");
+                                   drawCheque.writeECheque(chequeObj,eChequeReg.getEWalletLoaction()+"\\My Cheques\\"+chequeObj.getchequeNumber()+".sec");
                                    JOptionPane.showMessageDialog(null,"Done");
                                    
                                                                     
@@ -711,7 +711,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
             
             try{
                 // load cheque that already exist
-                oldCheque = loadCheque.readcheque(chequePath);
+                oldCheque = loadCheque.readECheque(chequePath);
                 jLDrawerName.setText(oldCheque.getaccountholder());
                 jLBankName.setText("Bank Name: "+oldCheque.getbankname());
                 jLAccountNum.setText("Account no: "+oldCheque.getaccountNumber());

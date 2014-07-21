@@ -236,7 +236,7 @@ public class EBankingJFrame extends javax.swing.JFrame {
     if(chequePath.length()!=0){
         try{
         EChequeIO loadCheq = new EChequeIO();
-        depositCheque = loadCheq.readcheque(chequePath);
+        depositCheque = loadCheq.readECheque(chequePath);
         selectChequeFlag = true;
         }
         catch(IOException exp){
