@@ -8,9 +8,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.Random;
 import java.io.*;
-import java.nio.*;
-import java.nio.file.Files;
-
 /**
  *
  * @author Paul Hunter

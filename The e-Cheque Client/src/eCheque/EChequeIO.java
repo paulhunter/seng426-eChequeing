@@ -54,26 +54,26 @@ public class EChequeIO {
      * @throws FileNotFoundException if file does not exist.
      * @throws SecurityException if user does not have read permission to file.
      * @throws IOException if there is an error while reading the file; try again.
-     * @throws StreamCorruptedException if the file read does not contain an 
+     * @throws ClassNotFoundException if the file read does not contain an 
      * ECheque structure.
      */
     public static ECheque readECheque(String filename) 
             throws NullPointerException, FileNotFoundException, 
-            SecurityException, IOException, StreamCorruptedException {
+            SecurityException, IOException, ClassNotFoundException {
 
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(filename)));//new File(filename))
         ECheque cheq = null;
 
         try {
             cheq = (ECheque) in.readObject();
-        } catch (ClassNotFoundException e) {
-            throw new StreamCorruptedException();
+        } catch (StreamCorruptedException e) {
+            throw new ClassNotFoundException();
         } catch (InvalidClassException e) {
-            throw new StreamCorruptedException();
+            throw new ClassNotFoundException();
         } catch (OptionalDataException e) {
-            throw new StreamCorruptedException();
+            throw new ClassNotFoundException();
         } catch (ClassCastException e) {
-            throw new StreamCorruptedException();
+            throw new ClassNotFoundException();
         } finally {
             in.close();
         }
