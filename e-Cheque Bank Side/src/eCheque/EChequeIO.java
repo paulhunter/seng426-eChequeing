@@ -1,8 +1,9 @@
-/*
+/**
+ * EChequeIO.java
+ * 
  * Created By: Basel
  * Last Edit: Paul Hunter
- * EChequeIO.java
- *
+ * 
  * Created on March 4, 2007, 9:44 PM
  * Last edit on 2014-JULY-20
  */
