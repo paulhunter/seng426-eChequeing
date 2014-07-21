@@ -242,7 +242,7 @@ public class EChequeIOTest {
         ECheque cheq2 = EChequeIO.readECheque(f.getAbsolutePath());
 
         //Cheque all fields.
-        assertEquals("ECheques have differing values", cheq.getAmountOfMoney()getAmountOfMoneygetMoney());
+        assertEquals("ECheques have differing values", cheq.getAmountOfMoney(), cheq2.getAmountOfMoney());
         assertEquals("ECheques have differing Account Holders!", cheq.getAccountHolder(), cheq2.getAccountHolder());
         assertEquals("ECheques have differing Account Numbers!", cheq.getAccountNumber(), cheq2.getAccountNumber());
         assertEquals("ECheques have differing Bank Names!", cheq.getBankName(), cheq2.getBankName());
@@ -252,7 +252,7 @@ public class EChequeIOTest {
         assertEquals("ECheques have differing Guaranteed Fields!", cheq.getGuaranteed(), cheq2.getGuaranteed());
         assertEquals("ECheques have differing Earn Days!", cheq.getEarnDay(), cheq2.getEarnDay());
         assertArrayEquals("ECheques have differing Bank Signatures!", cheq.getBankSignature(), cheq2.getBankSignature());
-        assertArrayEquals("ECheques have differing Drawers Signatures!", cheq.getDrawerSignature(), cheq2getDrawerSignaturee());
+        assertArrayEquals("ECheques have differing Drawers Signatures!", cheq.getDrawerSignature(), cheq2.getDrawerSignature());
     }
 
     /*

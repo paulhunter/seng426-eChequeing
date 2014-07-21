@@ -1,102 +1,181 @@
 /*
- * certificate.java
+ * DigitalCertificate.java
  *
  * Created on March 28, 2007, 3:26 PM
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
+ * Last edit on 2014-JULY-20
+ * 
  */
 
-/**
- *
- * @author Abu^S3ooD
- */
 package eCheque;
 
 import java.io.Serializable;
 import java.security.*;
-// this class generates Digital Signature
 
-public class DigitalCertificate implements Serializable
-{
-  
-  private String HolderName;
-  private String Subject ;
-  private String Issuer ;
-  private String SerialNumber;
-  private String ValidFrom;
-  private String ValidTo;
-  private PublicKey publicKey;
-  private byte[] IssuerSignature;
+/**
+ * The DigitalCertificate is a data structure used to verify a client or bank
+ * connection. It contains important information for encryption and validation 
+ * of the certificates between the two agents. 
+ * 
+ * @author Abu^S3ooD
+ * Last Edit: Paul Hunter
+ */
+public class DigitalCertificate implements Serializable {
+
+    /** Holder's Name */
+    private String holderName;
     
-    /** Creates a new instance of certificate */
+    /** Subject of Certificate */
+    private String subject;
+    
+    /** Issueing Authority */
+    private String issuer;
+    
+    /** Unique Serial Number */
+    private String serialNumber;
+    
+    /** Start of Valid period */
+    private String validFrom;
+    
+    /** End of valid period */
+    private String validTo;
+    
+    /** Public Key of Holder */
+    private PublicKey publicKey;
+    
+    /** Issueing Authority's Signature */
+    private byte[] issuerSignature;
+
+    /**
+     * Creates a new instance of certificate
+     */
     public DigitalCertificate() {
     }
-    public void setHolderName(String x)
-    {
-       HolderName= x;
-    }
-    public void setSubject(String x)
-    {
-        Subject= x;
-    }
-    public void setIssuer(String x)
-    {
-        Issuer= x;
-    }
-    public void setSerialNumber(String x)
-    {
-        SerialNumber= x;
-    }
-    public void setValidFrom (String x)
-    {
-        ValidFrom= x;
-    }
-    public void setValidTo (String x)
-    {
-        ValidTo= x;
-    }
-    public void setPublicKey (PublicKey x)
-    {
-        publicKey= x;
-    }
-    public void setIssuerSignature (byte [] x)
-    {
-        IssuerSignature= x;
+
+    /**
+     * Set the Holder Name field of the certificate.
+     * @param x Desired value.
+     */
+    public void setHolderName(String x) {
+        holderName = x;
     }
     
-    public String getHolderName()
-    {
-        return HolderName ;
+    /**
+     * Retrieve the current Holder name from the certificate.
+     * @return current value.
+     */
+    public String getHolderName() {
+        return holderName;
+    }    
+    
+    /**
+     * Set the Subject field of the certificate.
+     * @param x Desired value.
+     */
+    public void setSubject(String x) {
+        subject = x;
     }
-     public String getSubject()
-    {
-        return Subject ;
+
+    /**
+     * Retrieve the current Subject of the certificate.
+     * @return current value.
+     */
+    public String getSubject() {
+        return subject;
     }
-      public String getIssuer()
-    {
-        return Issuer;
+    
+    /**
+     * Set the Issuer field of the certificate.
+     * @param x Desired value.
+     */
+    public void setIssuer(String x) {
+        issuer = x;
     }
-       public String getSerialNumber()
-    {
-        return SerialNumber;
+
+    /**
+     * Retrieve the current Issuer of the certificate.
+     * @return current value.
+     */
+    public String getIssuer() {
+        return issuer;
     }
-        public String getValidFrom()
-    {
-        return ValidFrom;
+    
+    /**
+     * Set the Serial Number of the certificate.
+     * @param x Desired value.
+     */
+    public void setSerialNumber(String x) {
+        serialNumber = x;
     }
-    public String getValidTo()
-    {
-        return ValidTo;
+    
+    /**
+     * Retrieve the current Serial Number of the certificate.
+     * @return current value.
+     */
+    public String getSerialNumber() {
+        return serialNumber;
     }
-    public PublicKey getpublicKey()
-    {
+    
+    /**
+     * Set the Valid From date of the certificate.
+     * @param x desired value.
+     */
+    public void setValidFrom(String x) {
+        validFrom = x;
+    }
+
+    /**
+     * Retrieve the current Valid From date of the certificate.
+     * @return current value.
+     */
+    public String getValidFrom() {
+        return validFrom;
+    }
+    
+    /**
+     * Set the Valid To date of the certificate.
+     * @param x desired value.
+     */
+    public void setValidTo(String x) {
+        validTo = x;
+    }
+
+    /**
+     * Retrieve the current Valid To date of the certificate.
+     * @return current value.
+     */
+    public String getValidTo() {
+        return validTo;
+    }
+    
+    /**
+     * Set the PublicK Key of the certificate.
+     * @param x desired value.
+     */
+    public void setPublicKey(PublicKey x) {
+        publicKey = x;
+    }
+
+    /**
+     * Retrieve the current Public Key of the certificate.
+     * @return current value.
+     */
+    public PublicKey getpublicKey() {
         return publicKey;
     }
     
-         public byte[] getIssuerSignature()
-    {
-        return IssuerSignature;
+    /**
+     * Set the Issuer's Signature on the Certificate.
+     * @param x desired value.
+     */
+    public void setIssuerSignature(byte[] x) {
+        issuerSignature = x;
     }
-     
+    
+    /**
+     * Retrieve the current Issuer's Signature of the certificate.
+     * @return current value.
+     */
+    public byte[] getIssuerSignature() {
+        return issuerSignature;
+    }
 }
