@@ -5,10 +5,6 @@
  *
  */
 
-/**
- *
- * @author SAAD
- */
 package eCheque;
 
 import java.security.*;
@@ -16,6 +12,11 @@ import javax.crypto.*;
 import javax.crypto.spec.*;
 import java.io.*;
 
+/**
+ * A class with multiple functionality for creating AES keys and
+ * encrypting streams.
+ * @author SAAD
+ */
 public class AESCrypt {
     
     /**
@@ -50,6 +51,7 @@ public class AESCrypt {
                 break;
             case 1:
                 CipherMode = Cipher.DECRYPT_MODE;
+                break;
             default:
                 throw new IllegalArgumentException();
         }
@@ -84,7 +86,7 @@ public class AESCrypt {
                 out.write(outBytes,0,outLength);
             }
             else { 
-                more =false ;
+                more = false;
             }
         }
         if (inLength > 0) {

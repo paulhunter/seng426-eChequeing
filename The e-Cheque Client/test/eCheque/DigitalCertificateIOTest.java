@@ -283,7 +283,7 @@ public class DigitalCertificateIOTest {
         result.setIssuerSignature(TestHelper.GenerateRandomAlphaNumByteSequence(24));
         try
         {
-            result.setPublicKey(new RSAGenerator().GenerateRSAKeys().getPublic());
+            result.setPublicKey(RSAGenerator.GenerateRSAKeys().getPublic());
         }
         catch (java.security.NoSuchAlgorithmException e)
         {

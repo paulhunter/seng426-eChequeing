@@ -488,7 +488,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
             drawerDC = (DigitalCertificate)readDC.readDigitalCertificate(certificatePath);
             
             boolean verfiySign;
-            verfiySign = DigitalSignature.verifyDS(oldCheque.getdrawersiganure(),sigatureRef,drawerDC.getpublicKey());
+            verfiySign = DigitalSignature.verifyDS(oldCheque.getDrawerSignature(),sigatureRef,drawerDC.getpublicKey());
             
                 if(verfiySign){
                   JOptionPane.showMessageDialog(null,"The signature is vaild", "e-Cheque Clear",
@@ -583,7 +583,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
                                 try{
                                    //create AES Key with user password and cipher  
                                    AESCrypt aesCrypt = new AESCrypt();
-                                   Key AES128 = aesCrypt.inilizeAESKeyByPassword(signPass);
+                                   Key AES128 = aesCrypt.initializeAESKeyByPassword(signPass);
                                    Cipher cipher = aesCrypt.initializeCipher(AES128,1);
                                    InputStream in = new FileInputStream(eChequeReg.getEWalletLoaction()+"\\Security Tools\\Private Key.key");
                                    OutputStream out = new FileOutputStream(eChequeReg.getEWalletLoaction()+"\\Security Tools\\PrivateKey.key"); 
@@ -605,24 +605,24 @@ public class ChequeJFrame extends javax.swing.JFrame {
                                    
                                    // Fill the Cheque Data
                                    chequeObj.setaccountNumber(eChequeReg.getAccountNumber());
-                                   chequeObj.setaccountholder(eChequeReg.getClientName());
-                                   chequeObj.setbankname(eChequeReg.getBankName());
-                                   chequeObj.setchequeNumber(jLSerialNumber.getText());
-                                   chequeObj.setamountofMony(jTAmount.getText());
-                                   chequeObj.setcurrencytype("US $");
-                                   chequeObj.setamountofMony(jTAmount.getText());
-                                   chequeObj.setearnday(year+","+month+","+day);
-                                   chequeObj.setpayToOrderOf(payTo);
-                                   chequeObj.setguaranteed(granteed);
+                                   chequeObj.setAccountHolder(eChequeReg.getClientName());
+                                   chequeObj.setBankName(eChequeReg.getBankName());
+                                   chequeObj.setChequeNumber(jLSerialNumber.getText());
+                                   chequeObj.setAmountOfMoney(jTAmount.getText());
+                                   chequeObj.setCurrencyType("US $");
+                                   chequeObj.setAmountOfMoney(jTAmount.getText());
+                                   chequeObj.setEarnDay(year+","+month+","+day);
+                                   chequeObj.setPayToOrderOf(payTo);
+                                   chequeObj.setGuaranteed(granteed);
                                    
                                    // get cheque reference string and sign it.
                                    String chequeRef = ChequeReferenceString(chequeObj);
-                                   chequeObj.setdrawersiganure(DigitalSignature.signDS(chequeRef, privKey));
+                                   chequeObj.setDrawerSignature(DigitalSignature.signDS(chequeRef, privKey));
                                    JOptionPane.showMessageDialog(null,"Sign Complete");
                                    
                                    //Save the cheque after you sign it
                                    EChequeIO drawCheque = new EChequeIO();
-                                   drawCheque.writeECheque(chequeObj,eChequeReg.getEWalletLoaction()+"\\My Cheques\\"+chequeObj.getchequeNumber()+".sec");
+                                   drawCheque.writeECheque(chequeObj,eChequeReg.getEWalletLoaction()+"\\My Cheques\\"+chequeObj.getChequeNumber()+".sec");
                                    JOptionPane.showMessageDialog(null,"Done");
                                    
                                                                     
@@ -707,12 +707,12 @@ public class ChequeJFrame extends javax.swing.JFrame {
             try{
                 // load cheque that already exist
                 oldCheque = loadCheque.readECheque(chequePath);
-                jLDrawerName.setText(oldCheque.getaccountholder());
-                jLBankName.setText("Bank Name: "+oldCheque.getbankname());
-                jLAccountNum.setText("Account no: "+oldCheque.getaccountNumber());
+                jLDrawerName.setText(oldCheque.getAccountHolder());
+                jLBankName.setText("Bank Name: "+oldCheque.getBankName());
+                jLAccountNum.setText("Account no: "+oldCheque.getAccountNumber());
 
                 // to get the earn date
-                String []earnDate = oldCheque.getearnday().split(",");
+                String []earnDate = oldCheque.getEarnDay().split(",");
                 jTYear.setText(earnDate[0]);
                 jTYear.setEditable(false);
                 jTMonth.setText(earnDate[1]);
@@ -720,17 +720,17 @@ public class ChequeJFrame extends javax.swing.JFrame {
                 jTDay.setText(earnDate[2]);
                 jTDay.setEditable(false);
 
-                jTPayTo.setText(oldCheque.getpayToOrderOf());
+                jTPayTo.setText(oldCheque.getPayToOrderOf());
                 jTPayTo.setEditable(false);
 
-                jTAmount.setText(oldCheque.getMoney());
+                jTAmount.setText(oldCheque.getAmountOfMoney());
                 jTAmount.setEditable(false);
 
-                if(oldCheque.getguaranteed()){
+                if(oldCheque.getGuaranteed()){
                     jCGranteed.setSelected(true);
                     jCGranteed.setEnabled(false);
                 }
-                jLSerialNumber.setText(oldCheque.getchequeNumber());
+                jLSerialNumber.setText(oldCheque.getChequeNumber());
                 jLDate.setText("Date: "+currentDate());
                 
                 loadChequeFlag = true;
@@ -806,8 +806,8 @@ public class ChequeJFrame extends javax.swing.JFrame {
     private String ChequeReferenceString(ECheque chq){
         
         String ref="";
-        ref+= chq.getaccountNumber()+chq.getaccountholder()+chq.getbankname()+chq.getchequeNumber()+
-              chq.getMoney()+chq.getcurrencytype()+chq.getearnday()+chq.getguaranteed()+chq.getpayToOrderOf();
+        ref+= chq.getAccountNumber()+chq.getAccountHolder()+chq.getBankName()+chq.getChequeNumber()+
+              chq.getAmountOfMoney()+chq.getCurrencyType()+chq.getEarnDay()+chq.getGuaranteed()+chq.getPayToOrderOf();
        
         return ref;       
     }  

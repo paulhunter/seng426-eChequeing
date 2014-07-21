@@ -139,22 +139,22 @@ public class AESCryptTest {
     }
 
     /**
-     * Test that a cipher can be initialized in wrap mode given the correct
-     * mode
-     * @throws Exception 
+     * Test that a cipher cannot be initialized in Wrap mode, which
+     * is not supported by AESCrypt
+     * @throws IllegalArgumentException 
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class) 
     public void testInitializeCipherWrapMode() throws Exception {
         int mode = 2;
         testInitializeCipher(mode);
     }
     
     /**
-     * Test that a cipher can be initialized in unwrap mode given the correct
-     * mode
-     * @throws Exception 
+     * Test that a cipher cannot be initialized in UnWrap mode, which is
+     * not supported by AESCrypt
+     * @throws IllegalArgumentException 
      */    
-    @Test
+    @Test(expected = IllegalArgumentException.class) 
     public void testInitializeCipherUnwrapMode() throws Exception {
         int mode = 3;
         testInitializeCipher(mode);
@@ -174,14 +174,6 @@ public class AESCryptTest {
     @Test
     public void testEncrypt() throws Exception {
         int mode = 0;
-        String inputString = "This is a test!!";
-        OutputStream out = new ByteArrayOutputStream();
-        testCrypt(inputString, out, mode);
-    }
-    
-    @Test
-    public void testDecrypt() throws Exception {
-        int mode = 1;
         String inputString = "This is a test!!";
         OutputStream out = new ByteArrayOutputStream();
         testCrypt(inputString, out, mode);
@@ -227,7 +219,7 @@ public class AESCryptTest {
     
     
     private void testAESKey(String password) {
-        SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
+        SecretKey secretKey = aesCrypt.initializeAESKeyByPassword(password);
         assertThat(secretKey, not(nullValue()));         
     }
 }

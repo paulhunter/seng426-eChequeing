@@ -242,17 +242,17 @@ public class EChequeIOTest {
         ECheque cheq2 = EChequeIO.readECheque(f.getAbsolutePath());
 
         //Cheque all fields.
-        assertEquals("ECheques have differing values", cheq.getMoney(), cheq2.getMoney());
-        assertEquals("ECheques have differing Account Holders!", cheq.getaccountholder(), cheq2.getaccountholder());
-        assertEquals("ECheques have differing Account Numbers!", cheq.getaccountNumber(), cheq2.getaccountNumber());
-        assertEquals("ECheques have differing Bank Names!", cheq.getbankname(), cheq2.getbankname());
-        assertEquals("ECheques have differing Pay To Order Of!", cheq.getpayToOrderOf(), cheq2.getpayToOrderOf());
-        assertEquals("ECheques have differing Currency Type!", cheq.getcurrencytype(), cheq2.getcurrencytype());
-        assertEquals("ECheques have differing Cheque Numbers!", cheq.getchequeNumber(), cheq2.getchequeNumber());
-        assertEquals("ECheques have differing Guaranteed Fields!", cheq.getguaranteed(), cheq2.getguaranteed());
-        assertEquals("ECheques have differing Earn Days!", cheq.getearnday(), cheq2.getearnday());
-        assertArrayEquals("ECheques have differing Bank Signatures!", cheq.getbanksignature(), cheq2.getbanksignature());
-        assertArrayEquals("ECheques have differing Drawers Signatures!", cheq.getdrawersiganure(), cheq2.getdrawersiganure());
+        assertEquals("ECheques have differing values", cheq.getAmountOfMoney()getAmountOfMoneygetMoney());
+        assertEquals("ECheques have differing Account Holders!", cheq.getAccountHolder(), cheq2.getAccountHolder());
+        assertEquals("ECheques have differing Account Numbers!", cheq.getAccountNumber(), cheq2.getAccountNumber());
+        assertEquals("ECheques have differing Bank Names!", cheq.getBankName(), cheq2.getBankName());
+        assertEquals("ECheques have differing Pay To Order Of!", cheq.getPayToOrderOf(), cheq2.getPayToOrderOf());
+        assertEquals("ECheques have differing Currency Type!", cheq.getCurrencyType(), cheq2.getCurrencyType());
+        assertEquals("ECheques have differing Cheque Numbers!", cheq.getChequeNumber(), cheq2.getChequeNumber());
+        assertEquals("ECheques have differing Guaranteed Fields!", cheq.getGuaranteed(), cheq2.getGuaranteed());
+        assertEquals("ECheques have differing Earn Days!", cheq.getEarnDay(), cheq2.getEarnDay());
+        assertArrayEquals("ECheques have differing Bank Signatures!", cheq.getBankSignature(), cheq2.getBankSignature());
+        assertArrayEquals("ECheques have differing Drawers Signatures!", cheq.getDrawerSignature(), cheq2getDrawerSignaturee());
     }
 
     /*
@@ -274,16 +274,16 @@ public class EChequeIOTest {
         ECheque result = new ECheque();
 
         result.setaccountNumber(TestHelper.GenerateRandomAlphaNumString());
-        result.setaccountholder(TestHelper.GenerateRandomAlphaNumString());
-        result.setbankname(TestHelper.GenerateRandomAlphaNumString());
-        result.setpayToOrderOf(TestHelper.GenerateRandomAlphaNumString());
-        result.setamountofMony(TestHelper.GenerateRandomAlphaNumString());
-        result.setchequeNumber(TestHelper.GenerateRandomAlphaNumString());
-        result.setcurrencytype(TestHelper.GenerateRandomAlphaNumString());
-        result.setguaranteed(true);
-        result.setearnday(TestHelper.GenerateRandomAlphaNumString());
-        result.setbanksignature(TestHelper.GenerateRandomAlphaNumByteSequence());
-        result.setdrawersiganure(TestHelper.GenerateRandomAlphaNumByteSequence());
+        result.setAccountHolder(TestHelper.GenerateRandomAlphaNumString());
+        result.setBankName(TestHelper.GenerateRandomAlphaNumString());
+        result.setPayToOrderOf(TestHelper.GenerateRandomAlphaNumString());
+        result.setAmountOfMoney(TestHelper.GenerateRandomAlphaNumString());
+        result.setChequeNumber(TestHelper.GenerateRandomAlphaNumString());
+        result.setCurrencyType(TestHelper.GenerateRandomAlphaNumString());
+        result.setGuaranteed(true);
+        result.setEarnDay(TestHelper.GenerateRandomAlphaNumString());
+        result.setBankSignature(TestHelper.GenerateRandomAlphaNumByteSequence());
+        result.setDrawerSignature(TestHelper.GenerateRandomAlphaNumByteSequence());
 
         return result;
     }
