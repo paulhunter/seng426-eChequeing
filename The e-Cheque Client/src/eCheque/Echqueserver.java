@@ -13,17 +13,19 @@
  */ 
 package eCheque;
 
-import com.sun.crypto.provider.AESCipher;
-import java.net.*;
-import java.io.* ;       
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.crypto.Cipher;
-import java.security.*;
+import javax.swing.*;
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.security.InvalidKeyException;
+import java.security.Key;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Echqueserver implements Runnable{
     
@@ -128,16 +130,13 @@ private PrivateKey privKey;
             in.close();
             out.close();
            
-            // verify the cheque siganture using the sender public key.
-            Digitalsigneture digitalSign = new Digitalsigneture();
-            
             // load decrypted chequeObject.
             EChequeIO readChq = new EChequeIO();
             ECheque recivedChq = new ECheque();
             recivedChq = readChq.readECheque(walletPath+"\\My Cheques\\"+cheqName+".sec");
             String chqSign = ChequeReferenceString(recivedChq);
             
-            boolean verifySign = digitalSign.verifySignature(recivedChq.getdrawersiganure(),chqSign,clientCerit.getpublicKey());
+            boolean verifySign = DigitalSignature.verifyDS(recivedChq.getdrawersiganure(), chqSign, clientCerit.getpublicKey());
             if(verifySign){
                   JOptionPane.showMessageDialog(null,"The signature is vaild", "e-Cheque Clear",
                   JOptionPane.INFORMATION_MESSAGE);

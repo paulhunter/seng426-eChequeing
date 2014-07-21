@@ -1,28 +1,21 @@
 package eCheque;
 
-import java.security.InvalidKeyException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.SecureRandom;
-import java.security.Signature;
-import java.util.Random;
 import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.security.*;
+import java.util.Random;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  *
  * @author pmoon
  */
 
-public class DigitalsignetureTest {
-    Digitalsigneture digSignature;
+public class DigitalSignatureTest {
     PublicKey validPubKey;
     PrivateKey validPrivKey;
     private static String SIGNATURE_ALGORITHM = "SHA1WITHRSA";
@@ -32,20 +25,18 @@ public class DigitalsignetureTest {
     public void setUp() throws NoSuchAlgorithmException {
         KeyPair keyPair = generateKeyPair();
         
-        this.digSignature = new Digitalsigneture();
         this.validPubKey = keyPair.getPublic();
         this.validPrivKey = keyPair.getPrivate();
     }
 
     @After
     public void tearDown() {
-        this.digSignature = null;
         this.validPubKey = null;
         this.validPrivKey = null;
     }
 
     /**
-     * Test of signeture method, of class Digitalsigneture. 
+     * Test of signDS method, of class Digitalsigneture.
      * Tests whether the method throws a NullPointerException given a null 
      * string.
      *
@@ -53,11 +44,11 @@ public class DigitalsignetureTest {
      */
     @Test(expected = NullPointerException.class)
     public void testSignetureNullStringInput() throws Exception {
-        this.digSignature.signeture(null, this.validPrivKey);
+        DigitalSignature.signDS(null, this.validPrivKey);
     }
 
     /**
-     * Test of signeture method, of class Digitalsigneture. 
+     * Test of signDS method, of class Digitalsigneture.
      * Tests whether the method throws an InvalidKeyException given a null 
      * private key.
      *
@@ -65,11 +56,11 @@ public class DigitalsignetureTest {
      */
     @Test(expected = InvalidKeyException.class)
     public void testSignetureNullPrivKeyInput() throws Exception {
-        this.digSignature.signeture("", null);
+        DigitalSignature.signDS("", null);
     }
 
     /**
-     * Test of verifySignature method, of class Digitalsigneture. 
+     * Test of verifyDS method, of class Digitalsigneture.
      * Tests whether the method throws a NullPointerException given a null for
      * the signed data.
      *
@@ -77,11 +68,11 @@ public class DigitalsignetureTest {
      */
     @Test(expected = NullPointerException.class)
     public void testverifySignatureNullSignatureInput() throws Exception {
-        this.digSignature.verifySignature(null, "", this.validPubKey);
+        DigitalSignature.verifyDS(null, "", this.validPubKey);
     }
 
     /**
-     * Test of verifySignature method, of class Digitalsigneture. 
+     * Test of verifyDS method, of class Digitalsigneture.
      * Tests whether the method throws an NullPointerException given a null 
      * string for the message.
      *
@@ -91,11 +82,11 @@ public class DigitalsignetureTest {
     public void testverifySignatureNullMessageInput() throws Exception {
         Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
         signature.initSign(this.validPrivKey);
-        this.digSignature.verifySignature(signature.sign(), null, this.validPubKey);
+        DigitalSignature.verifyDS(signature.sign(), null, this.validPubKey);
     }
 
     /**
-     * Test of verifySignature method, of class Digitalsigneture. 
+     * Test of verifyDS method, of class Digitalsigneture.
      * Tests whether the method throws an InvalidKeyException given a null 
      * private key.
      *
@@ -105,12 +96,12 @@ public class DigitalsignetureTest {
     public void testverifySignatureNullPublicKeyInput() throws Exception {
         Signature signature = Signature.getInstance("SHA1WITHRSA");
         signature.initSign(this.validPrivKey);
-        this.digSignature.verifySignature(signature.sign(), "", null);
+        DigitalSignature.verifyDS(signature.sign(), "", null);
     }
 
     /**
-     * Test of signeture and verifySignature methods, of class Digitalsigneture.
-     * Tests whether the verifySignature, given a public key, returns the 
+     * Test of signDS and verifyDS methods, of class Digitalsigneture.
+     * Tests whether the verifyDS, given a public key, returns the
      * correct result after a string has been encrypted with the corresponding
      * private key.
      *
@@ -119,16 +110,16 @@ public class DigitalsignetureTest {
     @Test
     public void testSignetureAndVerifySignature() throws Exception {
         String testString = generateRandomAlphanumericString(50);
-        byte[] results = this.digSignature.signeture(testString, validPrivKey);
+        byte[] results = DigitalSignature.signDS(testString, validPrivKey);
         KeyPair invalidKP = generateKeyPair();
         
         while (invalidKP.getPrivate().equals(this.validPrivKey)) {
             invalidKP = generateKeyPair();
         }
         
-        assertTrue(this.digSignature.verifySignature(results, testString, validPubKey));
-        assertFalse(this.digSignature.verifySignature(results, "", validPubKey));
-        assertFalse(this.digSignature.verifySignature(results, testString, invalidKP.getPublic()));
+        assertTrue(DigitalSignature.verifyDS(results, testString, validPubKey));
+        assertFalse(DigitalSignature.verifyDS(results, "", validPubKey));
+        assertFalse(DigitalSignature.verifyDS(results, testString, invalidKP.getPublic()));
     }
 
     private String generateRandomAlphanumericString(int length) {
