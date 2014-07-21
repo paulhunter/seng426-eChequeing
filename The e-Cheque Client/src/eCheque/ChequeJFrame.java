@@ -484,15 +484,11 @@ public class ChequeJFrame extends javax.swing.JFrame {
             // Create Digital Certificate IO to load the Certificate
             DigitalCertificateIO readDC = new DigitalCertificateIO();
            
-            //Create a Digital signature object.
-            Digitalsigneture verfiy = new Digitalsigneture();
-              
-            
             try{
             drawerDC = (DigitalCertificate)readDC.readDigitalCertificate(certificatePath);
             
             boolean verfiySign;
-            verfiySign =verfiy.verifySignature(oldCheque.getdrawersiganure(),sigatureRef,drawerDC.getpublicKey());
+            verfiySign = DigitalSignature.verifyDS(oldCheque.getdrawersiganure(),sigatureRef,drawerDC.getpublicKey());
             
                 if(verfiySign){
                   JOptionPane.showMessageDialog(null,"The signature is vaild", "e-Cheque Clear",
@@ -621,8 +617,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
                                    
                                    // get cheque reference string and sign it.
                                    String chequeRef = ChequeReferenceString(chequeObj);
-                                   Digitalsigneture digitalSign = new Digitalsigneture();
-                                   chequeObj.setdrawersiganure(digitalSign.signeture(chequeRef,privKey));
+                                   chequeObj.setdrawersiganure(DigitalSignature.signDS(chequeRef, privKey));
                                    JOptionPane.showMessageDialog(null,"Sign Complete");
                                    
                                    //Save the cheque after you sign it
