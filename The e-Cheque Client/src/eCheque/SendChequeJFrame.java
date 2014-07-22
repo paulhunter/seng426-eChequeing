@@ -23,9 +23,13 @@ public class SendChequeJFrame extends javax.swing.JFrame {
     private String chequePath;
     private EChequeRegisteration user;
 
-    //GEN-BEGIN:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel emailSelectedChequeLabel;
+    private javax.swing.JLabel emailSelectedChequeNameLabel;
     private javax.swing.JPanel emailTransferJPanel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel ptpSelectedChequeLabel;
+    private javax.swing.JLabel ptpSelectedChequeNameLabel;
     private javax.swing.JPanel ptpTransferJPanel;
     private javax.swing.JLabel receiverEmailAddressLabel;
     private javax.swing.JTextField receiverEmailAddressTextField;
@@ -38,14 +42,15 @@ public class SendChequeJFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea statusTextArea;
     private javax.swing.JCheckBox timeoutEnabledCheckBox;
     private javax.swing.JButton zipSendChequeEmailButton;
-    //GEN-END:variables
+    // End of variables declaration//GEN-END:variables
 
     public SendChequeJFrame(EChequeRegisteration user) {
         this.user = user;
+        this.chequePath = "";
         initComponents();
     }
 
-    //GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -55,11 +60,15 @@ public class SendChequeJFrame extends javax.swing.JFrame {
         timeoutEnabledCheckBox = new javax.swing.JCheckBox();
         selectChequePTPButton = new javax.swing.JButton();
         sendChequePTPButton = new javax.swing.JButton();
+        ptpSelectedChequeLabel = new javax.swing.JLabel();
+        ptpSelectedChequeNameLabel = new javax.swing.JLabel();
         emailTransferJPanel = new javax.swing.JPanel();
         receiverEmailAddressLabel = new javax.swing.JLabel();
         receiverEmailAddressTextField = new javax.swing.JTextField();
         zipSendChequeEmailButton = new javax.swing.JButton();
         selectChequeEmailButton = new javax.swing.JButton();
+        emailSelectedChequeLabel = new javax.swing.JLabel();
+        emailSelectedChequeNameLabel = new javax.swing.JLabel();
         statusScrollPane = new javax.swing.JScrollPane();
         statusTextArea = new javax.swing.JTextArea();
 
@@ -91,76 +100,102 @@ public class SendChequeJFrame extends javax.swing.JFrame {
             }
         });
 
+        ptpSelectedChequeLabel.setText("Selected eCheque:");
+
         org.jdesktop.layout.GroupLayout ptpTransferJPanelLayout = new org.jdesktop.layout.GroupLayout(ptpTransferJPanel);
         ptpTransferJPanel.setLayout(ptpTransferJPanelLayout);
         ptpTransferJPanelLayout.setHorizontalGroup(
-                ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(ptpTransferJPanelLayout.createSequentialGroup()
-                                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                        .add(org.jdesktop.layout.GroupLayout.LEADING, timeoutEnabledCheckBox, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .add(org.jdesktop.layout.GroupLayout.LEADING, receiverURLAddressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(ptpTransferJPanelLayout.createSequentialGroup()
-                                                .add(0, 0, Short.MAX_VALUE)
-                                                .add(selectChequePTPButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                                .add(sendChequePTPButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                                        .add(receiverURLAddressTextField))
-                                .addContainerGap())
+            ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(ptpTransferJPanelLayout.createSequentialGroup()
+                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(ptpTransferJPanelLayout.createSequentialGroup()
+                        .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, timeoutEnabledCheckBox, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, receiverURLAddressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(ptpTransferJPanelLayout.createSequentialGroup()
+                                .add(0, 106, Short.MAX_VALUE)
+                                .add(selectChequePTPButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(18, 18, 18)
+                                .add(sendChequePTPButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(receiverURLAddressTextField)))
+                    .add(ptpTransferJPanelLayout.createSequentialGroup()
+                        .add(ptpSelectedChequeLabel)
+                        .add(107, 107, 107)
+                        .add(ptpSelectedChequeNameLabel)
+                        .add(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         ptpTransferJPanelLayout.setVerticalGroup(
-                ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(ptpTransferJPanelLayout.createSequentialGroup()
-                                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                        .add(receiverURLAddressTextField)
-                                        .add(receiverURLAddressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                        .add(selectChequePTPButton)
-                                        .add(timeoutEnabledCheckBox)
-                                        .add(sendChequePTPButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
+            ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(ptpTransferJPanelLayout.createSequentialGroup()
+                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(receiverURLAddressTextField)
+                    .add(receiverURLAddressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(ptpSelectedChequeLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(ptpSelectedChequeNameLabel))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(selectChequePTPButton)
+                    .add(timeoutEnabledCheckBox)
+                    .add(sendChequePTPButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         emailTransferJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail Transfer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
 
         receiverEmailAddressLabel.setText("Receiver e-mail address:");
 
-        zipSendChequeEmailButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eCheque/resources/icon-zip.gif"))); // NOI18N
-        zipSendChequeEmailButton.setText("ZIP & Send eCheque");
+        zipSendChequeEmailButton.setText("ZIP & Send");
 
         selectChequeEmailButton.setText("Select eCheque");
+
+        emailSelectedChequeLabel.setText("Selected eCheque:");
 
         org.jdesktop.layout.GroupLayout emailTransferJPanelLayout = new org.jdesktop.layout.GroupLayout(emailTransferJPanel);
         emailTransferJPanel.setLayout(emailTransferJPanelLayout);
         emailTransferJPanelLayout.setHorizontalGroup(
-                emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(emailTransferJPanelLayout.createSequentialGroup()
-                                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(emailTransferJPanelLayout.createSequentialGroup()
-                                                .add(5, 5, 5)
-                                                .add(receiverEmailAddressLabel)
-                                                .add(18, 18, 18)
-                                                .add(receiverEmailAddressTextField))
-                                        .add(emailTransferJPanelLayout.createSequentialGroup()
-                                                .add(51, 51, 51)
-                                                .add(selectChequeEmailButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 128, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(18, 18, 18)
-                                                .add(zipSendChequeEmailButton)))
-                                .addContainerGap())
+            emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(emailTransferJPanelLayout.createSequentialGroup()
+                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, emailTransferJPanelLayout.createSequentialGroup()
+                        .add(5, 5, 5)
+                        .add(receiverEmailAddressLabel)
+                        .add(18, 18, 18)
+                        .add(receiverEmailAddressTextField))
+                    .add(emailTransferJPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(emailTransferJPanelLayout.createSequentialGroup()
+                                .add(0, 0, Short.MAX_VALUE)
+                                .add(selectChequeEmailButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 122, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(zipSendChequeEmailButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 81, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(emailTransferJPanelLayout.createSequentialGroup()
+                                .add(emailSelectedChequeLabel)
+                                .add(106, 106, 106)
+                                .add(emailSelectedChequeNameLabel)
+                                .add(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         emailTransferJPanelLayout.setVerticalGroup(
-                emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(emailTransferJPanelLayout.createSequentialGroup()
-                                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                                        .add(receiverEmailAddressTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(receiverEmailAddressLabel))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(zipSendChequeEmailButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 54, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .add(selectChequeEmailButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(emailTransferJPanelLayout.createSequentialGroup()
+                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(receiverEmailAddressTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(receiverEmailAddressLabel))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(emailSelectedChequeLabel)
+                    .add(emailSelectedChequeNameLabel))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 13, Short.MAX_VALUE)
+                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(zipSendChequeEmailButton)
+                    .add(selectChequeEmailButton))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         statusTextArea.setColumns(20);
@@ -172,49 +207,46 @@ public class SendChequeJFrame extends javax.swing.JFrame {
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                        .add(ptpTransferJPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .add(jPanel1Layout.createSequentialGroup()
-                                                .add(emailTransferJPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                                .add(0, 0, Short.MAX_VALUE))
-                                        .add(statusScrollPane))
-                                .addContainerGap())
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(ptpTransferJPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(emailTransferJPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(statusScrollPane))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .add(ptpTransferJPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(emailTransferJPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(statusScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 96, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(ptpTransferJPanel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(emailTransferJPanel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(statusScrollPane, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 96, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(18, Short.MAX_VALUE))
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(415, 379));
+        setSize(new java.awt.Dimension(485, 402));
         setLocationRelativeTo(null);
-    }//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents
 
     /**
      * Sends an eCheque via the PTP protocol.
@@ -231,16 +263,18 @@ public class SendChequeJFrame extends javax.swing.JFrame {
         Runnable threadingClient;
         Thread client;
 
-        if (chequePath.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please select an eCheque " +
-                    "first.");
+        hostName = receiverURLAddressTextField.getText();
+        if (hostName.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please specify the URL/IP " +
+                    "of the receiver.", "No receiver address", 
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        hostName = receiverURLAddressTextField.getText();
-        if (hostName.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please specify the URL/IP" +
-                    "of the receiver.");
+        if (chequePath.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please select an eCheque " +
+                    "first.", "No eCheque specified",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -301,16 +335,16 @@ public class SendChequeJFrame extends javax.swing.JFrame {
             try {
                 EChequeIO.readECheque(path);
                 chequePath = path;
-                JOptionPane.showMessageDialog(null, "eCheque " + file.getName()
-                                + " successfully selected.", "Cheque Selected",
-                        JOptionPane.ERROR_MESSAGE);
+                ptpSelectedChequeNameLabel.setText(file.getName());
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Error while loading the " +
                         "cheque.", "System Error", JOptionPane.ERROR_MESSAGE);
+                ptpSelectedChequeNameLabel.setText("");
                 chequePath = "";
             } catch (ClassNotFoundException e) {
                 JOptionPane.showMessageDialog(null, "Invalid eCheque file.",
                         "Error", JOptionPane.ERROR_MESSAGE);
+                ptpSelectedChequeNameLabel.setText("");
                 chequePath = "";
             }
         }
