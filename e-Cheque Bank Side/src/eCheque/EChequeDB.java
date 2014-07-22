@@ -135,9 +135,9 @@ public class EChequeDB {
         
         try{
             connectToDataBase();
-            JOptionPane.showMessageDialog(null,"You are connected to e-Cheque Bank DB","DB State",JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("DB State: You are connected to the e-Cheque Bank DB");
             createStatment();
-            JOptionPane.showMessageDialog(null,"You have created statment","DB State",JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("DB State: You have created a statement");
                  
             // run the specific sql statment
             executeSQLStatment(databaseStat,databaseMode);
@@ -154,14 +154,10 @@ public class EChequeDB {
             
         }
         catch(ClassNotFoundException exp){
-            JOptionPane.showMessageDialog(null,exp.getMessage(),"DB Error",JOptionPane.ERROR_MESSAGE);
-            exp.printStackTrace();
-            
+            System.out.println("DB Error: " + exp.getMessage());            
         }
         catch(SQLException exp){
-            JOptionPane.showMessageDialog(null,exp.getMessage(),"DB Error",JOptionPane.ERROR_MESSAGE);
-            exp.printStackTrace();
-                    
+            System.out.println("DB Error: " + exp.getMessage());
         }
         finally{
             
@@ -179,9 +175,9 @@ public class EChequeDB {
         
         try{
             connectToDataBase();
-            JOptionPane.showMessageDialog(null,"You are connected to e-Cheque Bank DB","DB State",JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("DB State: You are connected to e-Cheque Bank DB");
             createStatment();
-            JOptionPane.showMessageDialog(null,"You have created statment","DB State",JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("DB State: You have created a statement");
                  
             // run the specific sql statment
             executeSQLStatment(databaseStat,databaseMode);
@@ -196,14 +192,10 @@ public class EChequeDB {
             
         }
         catch(ClassNotFoundException exp){
-            JOptionPane.showMessageDialog(null,exp.getMessage(),"DB Error",JOptionPane.ERROR_MESSAGE);
-            exp.printStackTrace();
-            
+            System.out.println("DB Error: " + exp.getMessage());            
         }
         catch(SQLException exp){
-            JOptionPane.showMessageDialog(null,exp.getMessage(),"DB Error",JOptionPane.ERROR_MESSAGE);
-            exp.printStackTrace();
-                    
+            System.out.println("DB Error: " + exp.getMessage());                    
         }
         finally{
             

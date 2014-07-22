@@ -37,10 +37,7 @@ public class BankSever implements Runnable{
             }
         }
         catch(IOException exp){
-            JOptionPane.showMessageDialog(null,exp.getMessage(),"Network Error",JOptionPane.ERROR_MESSAGE);
-            
+            System.out.println("Network Error: " + exp.getMessage());
         }
-        
-    }
-    
+    }    
 }
