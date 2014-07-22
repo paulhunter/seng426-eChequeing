@@ -479,14 +479,13 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                                     outObj.close();
 
                                                     //create AES Key with user password and cipher  
-                                                    AESCrypt aesCrypt = new AESCrypt();
-                                                    Key AES128 = aesCrypt.initializeAESKeyByPassword(passTemp);
-                                                    Cipher cipher = aesCrypt.initializeCipher(AES128, 0);
+                                                    Key AES128 = AESCrypt.InitializeAESKeyByPassword(passTemp);
+                                                    Cipher cipher = AESCrypt.InitializeCipher(AES128, 0);
                                                     InputStream in = new FileInputStream(eWalletPath + "/Security Tools/privateKey.key");
                                                     OutputStream out = new FileOutputStream(eWalletPath + "/Security Tools/Private Key.key");
 
                                                     // encrypt the private key with the AES key and delete the plain key
-                                                    aesCrypt.crypt(in, out, cipher);
+                                                    AESCrypt.Crypt(in, out, cipher);
                                                     in.close();
                                                     out.close();
                                                     File control = new File(eWalletPath + "/Security Tools/privateKey.key");

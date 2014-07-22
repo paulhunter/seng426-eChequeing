@@ -124,9 +124,8 @@ private PrivateKey privKey;
             OutputStream out = new FileOutputStream(walletPath+"\\My Cheques\\"+cheqName+".sec");
             
             //create AES object to decrypt the received cheque
-            AESCrypt aesObj = new AESCrypt();
-            Cipher aesCipher = aesObj.initializeCipher(sessionKey,1);
-            aesObj.crypt(in,out,aesCipher);
+            Cipher aesCipher = AESCrypt.InitializeCipher(sessionKey,1);
+            AESCrypt.Crypt(in,out,aesCipher);
             in.close();
             out.close();
            

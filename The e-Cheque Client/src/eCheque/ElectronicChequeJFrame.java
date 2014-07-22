@@ -364,14 +364,13 @@ public class ElectronicChequeJFrame extends javax.swing.JFrame {
                         if(!privateKeyFlag){
              
                         //create AES Key with user password and cipher  
-                        AESCrypt aesCrypt = new AESCrypt();
-                        Key AES128 = aesCrypt.initializeAESKeyByPassword(passTemp);
-                        Cipher cipher = aesCrypt.initializeCipher(AES128,1);
+                        Key AES128 = AESCrypt.InitializeAESKeyByPassword(passTemp);
+                        Cipher cipher = AESCrypt.InitializeCipher(AES128,1);
                         InputStream in = new FileInputStream(registerdUser.getEWalletLoaction()+"\\Security Tools\\Private Key.key");
                         OutputStream out = new FileOutputStream(registerdUser.getEWalletLoaction()+"\\Security Tools\\PrivateKey.key"); 
                                   
                         // decrypt the private key with the AES key and delete the plain key
-                        aesCrypt.crypt(in,out,cipher);
+                        AESCrypt.Crypt(in,out,cipher);
                         in.close();
                         out.close();
                         ObjectInputStream objIn = new ObjectInputStream (new FileInputStream(registerdUser.getEWalletLoaction()+"\\Security Tools\\PrivateKey.key"));

@@ -17,14 +17,17 @@ import java.io.*;
  * encrypting streams.
  * @author SAAD
  */
-public class AESCrypt {
+public final class AESCrypt {
+    
+    private AESCrypt() {
+    }
     
     /**
      * Creates a random secret AES key.
      * @return The secret key that was randomly generated
      * @throws Exception 
      */
-    public SecretKey GenerateRandomAESKey() throws Exception {
+    public static SecretKey GenerateRandomAESKey() throws Exception {
         KeyGenerator KeyGen = KeyGenerator.getInstance("AES");
         SecureRandom random =new SecureRandom();
         KeyGen.init(random);
@@ -41,7 +44,7 @@ public class AESCrypt {
      * @throws Exception, IllegalArgumentException if the mode is not in the
      * appropriate range
      */
-    public Cipher initializeCipher(Key key, int mode) throws Exception {
+    public static Cipher InitializeCipher(Key key, int mode) throws Exception {
         int CipherMode;
         Cipher cipherObj;    
         
@@ -69,7 +72,7 @@ public class AESCrypt {
      * @param cipherObj
      * @throws Exception 
      */
-    public void crypt(InputStream in,OutputStream out,Cipher cipherObj) throws Exception {
+    public static void Crypt(InputStream in,OutputStream out,Cipher cipherObj) throws Exception {
         int blockSize = cipherObj.getBlockSize();
         int outputSize = cipherObj.getOutputSize(blockSize);
         byte[] inBytes = new byte[blockSize];
@@ -103,7 +106,7 @@ public class AESCrypt {
      * @param pass
      * @return a secret key specification object in AES form.
      */
-    public SecretKeySpec initializeAESKeyByPassword(String pass) {
+    public static SecretKeySpec InitializeAESKeyByPassword(String pass) {
         SecretKeySpec aesKey;
         byte[] KeyData = pass.getBytes();
         aesKey = new SecretKeySpec(KeyData,"AES");

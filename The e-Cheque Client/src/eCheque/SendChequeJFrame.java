@@ -257,15 +257,14 @@ public class SendChequeJFrame extends javax.swing.JFrame {
                 if(hostName.length()!=0){
                         try{
                             // genertate a session key.
-                            AESCrypt aesKey128 = new AESCrypt();
                             Key sessionKey;
-                            sessionKey = aesKey128.GenerateRandomAESKey();
-                            Cipher aesCipher = aesKey128.initializeCipher(sessionKey,0);
+                            sessionKey = AESCrypt.GenerateRandomAESKey();
+                            Cipher aesCipher = AESCrypt.InitializeCipher(sessionKey,0);
 
                             InputStream in = new FileInputStream(chequePath);
                             JOptionPane.showMessageDialog(null,eChequeRegisterdUser.getEWalletLoaction());
                             OutputStream out = new FileOutputStream(eChequeRegisterdUser.getEWalletLoaction()+"\\Out going\\"+cipherChequePath); 
-                            aesKey128.crypt(in,out,aesCipher);
+                            AESCrypt.Crypt(in,out,aesCipher);
                             in.close();
                             out.close();
                             chequePath =eChequeRegisterdUser.getEWalletLoaction()+"\\Out going\\"+cipherChequePath;
