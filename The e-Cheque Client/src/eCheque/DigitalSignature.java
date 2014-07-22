@@ -1,9 +1,8 @@
-/*
+/**
+ * DigitalSignature.java
+ *
  * Created: March 28, 2007, 4:03 PM by Basel
  * Last edit: July 21, 2014, 12:16 PM by Paul Moon
- *
- * @version 0 JULY 2014
- * @author Basel
  */
 package eCheque;
 
@@ -16,7 +15,7 @@ import java.security.*;
  * @author Basel
  */
 public class DigitalSignature {
-    public static String SIGNATURE_ALGORITHM = "SHA1withRSA";
+    private static String SIGNATURE_ALGORITHM = "SHA1withRSA";
 
     /**
      * Signs data using a SHA1withRSA algorithm.
