@@ -50,64 +50,64 @@ public class EChequeTest {
     @Test
     public void testGetSetAccountHolder() {
         String accountHolder = "Mike Smith";
-        eCheque.setaccountholder(accountHolder);
-        assertThat(accountHolder, is(equalTo(eCheque.getaccountholder())));
+        eCheque.setAccountHolder(accountHolder);
+        assertThat(accountHolder, is(equalTo(eCheque.getAccountHolder())));
     }
     
     @Test
     public void testGetSetAccountNumber() {
         String accountNumber = "1234 5678 9101";
         eCheque.setaccountNumber(accountNumber);
-        assertThat(accountNumber, is(equalTo(eCheque.getaccountNumber())));
+        assertThat(accountNumber, is(equalTo(eCheque.getAccountNumber())));
     }
     
     @Test
     public void testGetSetBankName() {
         String bankname = "Royal Bank of Anything";
-        eCheque.setbankname(bankname);
-        assertThat(bankname, is(equalTo(eCheque.getbankname())));
+        eCheque.setBankName(bankname);
+        assertThat(bankname, is(equalTo(eCheque.getBankName())));
     }
     
     @Test
     public void testGetSetPayToOrderOf() {
         String payTo = "Jon Smith";
-        eCheque.setpayToOrderOf(payTo);
-        assertThat(payTo, is(equalTo(eCheque.getpayToOrderOf())));
+        eCheque.setPayToOrderOf(payTo);
+        assertThat(payTo, is(equalTo(eCheque.getPayToOrderOf())));
     }
     
     @Test
     public void testGetSetAmountOfMoney() {
         String amountOfMoney = "1234";
-        eCheque.setamountofMony(amountOfMoney);
-        assertThat(amountOfMoney, is(equalTo(eCheque.getMoney())));
+        eCheque.setAmountOfMoney(amountOfMoney);
+        assertThat(amountOfMoney, is(equalTo(eCheque.getAmountOfMoney())));
     }
     
     @Test
     public void testGetSetCurrencyType() {
         String currencyType = "USD";
-        eCheque.setcurrencytype(currencyType);
-        assertThat(currencyType, is(equalTo(eCheque.getcurrencytype())));
+        eCheque.setCurrencyType(currencyType);
+        assertThat(currencyType, is(equalTo(eCheque.getCurrencyType())));
     }
     
     @Test
     public void testGetSetChequeNumber() {
         String chequeNumber = "12";
-        eCheque.setchequeNumber(chequeNumber);
-        assertThat(chequeNumber, is(equalTo(eCheque.getchequeNumber())));
+        eCheque.setChequeNumber(chequeNumber);
+        assertThat(chequeNumber, is(equalTo(eCheque.getChequeNumber())));
     }
     
     @Test
     public void testGetSetGuaranteed() {
         boolean guaranteed = true;
-        eCheque.setguaranteed(guaranteed);
-        assertThat(guaranteed, is(equalTo(eCheque.getguaranteed())));
+        eCheque.setGuaranteed(guaranteed);
+        assertThat(guaranteed, is(equalTo(eCheque.getGuaranteed())));
     }
     
     @Test
     public void testGetSetEarnDay() {
         String earnDay = "Monday";
-        eCheque.setearnday(earnDay);
-        assertThat(earnDay, is(equalTo(eCheque.getearnday())));
+        eCheque.setEarnDay(earnDay);
+        assertThat(earnDay, is(equalTo(eCheque.getEarnDay())));
     }
     
     @Test
@@ -118,8 +118,8 @@ public class EChequeTest {
                 signature[i] = 1;
             }
         }
-        eCheque.setbanksignature(signature);
-        assertThat(signature, is(equalTo(eCheque.getbanksignature())));
+        eCheque.setBankSignature(signature);
+        assertThat(signature, is(equalTo(eCheque.getBankSignature())));
     }
     
     @Test
@@ -130,7 +130,7 @@ public class EChequeTest {
                 signature[i] = 1;
             }
         }
-        eCheque.setdrawersiganure(signature);
-        assertThat(signature, is(equalTo(eCheque.getdrawersiganure())));       
+        eCheque.setDrawerSignature(signature);
+        assertThat(signature, is(equalTo(eCheque.getDrawerSignature())));       
     }
 }

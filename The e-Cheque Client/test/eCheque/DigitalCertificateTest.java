@@ -133,10 +133,9 @@ public class DigitalCertificateTest {
     @Test
     public void testGetSetPublicKey() {
         DigitalCertificate subject = new DigitalCertificate();
-        RSAGenerator keyGen = new RSAGenerator();
         PublicKey newValue = null;
         try {
-            KeyPair keys = keyGen.GenerateRSAKeys();
+            KeyPair keys = RSAGenerator.GenerateRSAKeys();
             newValue = keys.getPublic();
         } catch (java.security.NoSuchAlgorithmException e) {
             //if this happens, we dont have a value new pair to use to test with, so we fail.

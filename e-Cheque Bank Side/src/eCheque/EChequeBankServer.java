@@ -129,7 +129,7 @@ public class EChequeBankServer extends javax.swing.JFrame {
             
             try{
                 
-                JOptionPane.showMessageDialog(null,"The Server is going to shutdown","System Information",JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("System Information: The Server is going to shutdown");
                 bankServerTread.stop();    
                 Thread.sleep(5000);
                 System.exit(0);
@@ -139,6 +139,7 @@ public class EChequeBankServer extends javax.swing.JFrame {
             }
         }
         else{
+            System.out.println("System Information: The Server is not working");
             JOptionPane.showMessageDialog(null,"The Server is not working","System Information",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jBStopMouseClicked
@@ -157,12 +158,12 @@ public class EChequeBankServer extends javax.swing.JFrame {
                 jTBankShell.append("\n\n>> Sever started");
             }
             catch(IOException exp){
-                
-                JOptionPane.showMessageDialog(null,exp.getMessage(),"Network Error",JOptionPane.ERROR_MESSAGE);
+                System.out.println("Network Error: " + exp.getMessage());
             }
             
         }
         else{
+            System.out.println("System Information: The Server is already running");
             JOptionPane.showMessageDialog(null,"The Server is aready running","System Information",JOptionPane.INFORMATION_MESSAGE);
             
         }

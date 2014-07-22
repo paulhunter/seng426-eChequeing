@@ -10,7 +10,7 @@ package eCheque;
  * @author Saad
  */
 //import com.Trendy.swing.plaf.TrendyLookAndFeel;
-import com.sun.crypto.provider.AESCipher;
+//import com.sun.crypto.provider.AESCipher;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -471,8 +471,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                                 {
                                                     ObjectOutputStream outObj;
                                                     // create the user digital certificate (digital identity)
-                                                    RSAGenerator keyGen = new RSAGenerator();
-                                                    KeyPair RSAKeys = keyGen.GenerateRSAKeys();
+                                                    KeyPair RSAKeys = RSAGenerator.GenerateRSAKeys();
 
                                                     // encrypt private key with user password. 
                                                     outObj = new ObjectOutputStream(new FileOutputStream(eWalletPath + "/Security Tools/privateKey.key"));
@@ -480,14 +479,13 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                                     outObj.close();
 
                                                     //create AES Key with user password and cipher  
-                                                    AESCrypt aesCrypt = new AESCrypt();
-                                                    Key AES128 = aesCrypt.inilizeAESKeyByPassword(passTemp);
-                                                    Cipher cipher = aesCrypt.initializeCipher(AES128, 0);
+                                                    Key AES128 = AESCrypt.InitializeAESKeyByPassword(passTemp);
+                                                    Cipher cipher = AESCrypt.InitializeCipher(AES128, 0);
                                                     InputStream in = new FileInputStream(eWalletPath + "/Security Tools/privateKey.key");
                                                     OutputStream out = new FileOutputStream(eWalletPath + "/Security Tools/Private Key.key");
 
                                                     // encrypt the private key with the AES key and delete the plain key
-                                                    aesCrypt.crypt(in, out, cipher);
+                                                    AESCrypt.Crypt(in, out, cipher);
                                                     in.close();
                                                     out.close();
                                                     File control = new File(eWalletPath + "/Security Tools/privateKey.key");
@@ -503,9 +501,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                                     dcObj.setPublicKey(RSAKeys.getPublic());
 
                                                     // save the user digital certificate
-                                                    DigitalCertificateIO dcIO = new DigitalCertificateIO();
-                                                    dcIO.SaveDC(dcObj, eWalletPath + "/Security Tools/" + registerationObj.getClientName() + "DigCert.edc");
-
+                                                    DigitalCertificateIO.writeDigitalCertificate(dcObj, eWalletPath + "/Security Tools/" + registerationObj.getClientName() + "DigCert.edc");
 
                                                     //Connect to the bank server to activate the e-cheque account.
                                                     Runnable client = new EchequeClient(8189, 0, registerationObj.getBankAddress(), registerationObj,

@@ -36,7 +36,6 @@ import org.junit.Test;
  */
 public class AESCryptTest {
     
-    public AESCrypt aesCrypt;
     
     public AESCryptTest() {
     }
@@ -51,13 +50,11 @@ public class AESCryptTest {
     
     @Before
     public void setUp() {
-        aesCrypt = new AESCrypt();
         
     }
     
     @After
     public void tearDown() {
-        aesCrypt = null;
     }
 
     /*
@@ -71,8 +68,8 @@ public class AESCryptTest {
      */
     @Test
     public void testGenerateRandomAESKey() throws Exception  {
-        SecretKey secretKey1 = aesCrypt.GenerateRandomAESKey();
-        SecretKey secretKey2 = aesCrypt.GenerateRandomAESKey();
+        SecretKey secretKey1 = AESCrypt.GenerateRandomAESKey();
+        SecretKey secretKey2 = AESCrypt.GenerateRandomAESKey();
         assertThat(secretKey1, not(nullValue()));
         assertThat(secretKey2, not(nullValue()));
         assertThat("Generated keys are not the same", secretKey1.getEncoded(), is(not(secretKey2.getEncoded())));
@@ -139,22 +136,22 @@ public class AESCryptTest {
     }
 
     /**
-     * Test that a cipher can be initialized in wrap mode given the correct
-     * mode
-     * @throws Exception 
+     * Test that a cipher cannot be initialized in Wrap mode, which
+     * is not supported by AESCrypt
+     * @throws IllegalArgumentException 
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class) 
     public void testInitializeCipherWrapMode() throws Exception {
         int mode = 2;
         testInitializeCipher(mode);
     }
     
     /**
-     * Test that a cipher can be initialized in unwrap mode given the correct
-     * mode
-     * @throws Exception 
+     * Test that a cipher cannot be initialized in UnWrap mode, which is
+     * not supported by AESCrypt
+     * @throws IllegalArgumentException 
      */    
-    @Test
+    @Test(expected = IllegalArgumentException.class) 
     public void testInitializeCipherUnwrapMode() throws Exception {
         int mode = 3;
         testInitializeCipher(mode);
@@ -180,14 +177,6 @@ public class AESCryptTest {
     }
     
     @Test
-    public void testDecrypt() throws Exception {
-        int mode = 1;
-        String inputString = "This is a test!!";
-        OutputStream out = new ByteArrayOutputStream();
-        testCrypt(inputString, out, mode);
-    }
-    
-    @Test
     public void testEncryptZeroLength() throws Exception {
         int mode = 0;
         String inputString = "";
@@ -199,15 +188,15 @@ public class AESCryptTest {
     public void testEncryptNullStream() throws Exception {
         int mode = 0;
         Key key = KeyGenerator.getInstance("AES").generateKey();
-        Cipher cipher = aesCrypt.initializeCipher(key, mode);
-        aesCrypt.crypt(null, null, cipher);
+        Cipher cipher = AESCrypt.InitializeCipher(key, mode);
+        AESCrypt.Crypt(null, null, cipher);
     }
     
     private void testCrypt(String inputString, OutputStream out, int mode) throws Exception {
         InputStream in = new ByteArrayInputStream(inputString.getBytes());
         Key key = KeyGenerator.getInstance("AES").generateKey();
-        Cipher cipher = aesCrypt.initializeCipher(key, mode);
-        aesCrypt.crypt(in, out, cipher);
+        Cipher cipher = AESCrypt.InitializeCipher(key, mode);
+        AESCrypt.Crypt(in, out, cipher);
         ByteArrayOutputStream baos = (ByteArrayOutputStream) out;
         String output = new String(baos.toByteArray(), Charset.defaultCharset());
         assertThat(output, not(nullValue()));
@@ -219,7 +208,7 @@ public class AESCryptTest {
     private void testInitializeCipher(int mode) throws Exception {
         String algoType = "AES";
         Key key = KeyGenerator.getInstance(algoType).generateKey();
-        Cipher cipher = aesCrypt.initializeCipher(key, mode);
+        Cipher cipher = AESCrypt.InitializeCipher(key, mode);
 
         assertThat(cipher, not(nullValue()));
         assertThat(cipher.getAlgorithm(), is(equalTo(algoType)));
@@ -227,7 +216,7 @@ public class AESCryptTest {
     
     
     private void testAESKey(String password) {
-        SecretKey secretKey = aesCrypt.inilizeAESKeyByPassword(password);
+        SecretKey secretKey = AESCrypt.InitializeAESKeyByPassword(password);
         assertThat(secretKey, not(nullValue()));         
     }
 }

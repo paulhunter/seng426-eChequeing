@@ -24,7 +24,6 @@ import org.junit.Test;
  */
 public class RSAGeneratorTest {
     
-    RSAGenerator rsaGenerator;
     
     public RSAGeneratorTest() {
     }
@@ -39,12 +38,10 @@ public class RSAGeneratorTest {
     
     @Before
     public void setUp() {
-        rsaGenerator = new RSAGenerator();
     }
     
     @After
     public void tearDown() {
-        rsaGenerator = null;
     }
 
     /*
@@ -53,8 +50,8 @@ public class RSAGeneratorTest {
      */
     @Test
     public void testRSAGenerator() throws NoSuchAlgorithmException {
-        KeyPair rsaKeyPair1 = rsaGenerator.GenerateRSAKeys();
-        KeyPair rsaKeyPair2 = rsaGenerator.GenerateRSAKeys();
+        KeyPair rsaKeyPair1 = RSAGenerator.GenerateRSAKeys();
+        KeyPair rsaKeyPair2 = RSAGenerator.GenerateRSAKeys();
         assertThat(rsaKeyPair1, not(nullValue()));
         assertThat(rsaKeyPair2, not(nullValue()));
         

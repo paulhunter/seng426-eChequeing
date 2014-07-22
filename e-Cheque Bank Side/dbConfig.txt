@@ -1,0 +1,3 @@
+jdbc:mysql://localhost/ebank
+seng426
+log2IT05

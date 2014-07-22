@@ -222,7 +222,6 @@ public class SendChequeJFrame extends javax.swing.JFrame {
      * @param evt MouseEvent which triggered the method to be called.
      */
     private void sendChequePTPButtonMouseClicked(java.awt.event.MouseEvent evt) {
-        AESCrypt aesKey128;
         Cipher aesCipher;
         Key sessionKey;
         String hostName, walletLocation, chequeName;
@@ -247,9 +246,8 @@ public class SendChequeJFrame extends javax.swing.JFrame {
 
         try {
             // Generate a session key
-            aesKey128 = new AESCrypt();
-            sessionKey = aesKey128.GenerateRandomAESKey();
-            aesCipher = aesKey128.initializeCipher(sessionKey, 0);
+            sessionKey = AESCrypt.GenerateRandomAESKey();
+            aesCipher = AESCrypt.InitializeCipher(sessionKey, 0);
 
             walletLocation = user.getEWalletLoaction();
             chequeName = new File(chequePath).getName();
@@ -257,7 +255,7 @@ public class SendChequeJFrame extends javax.swing.JFrame {
             // Save the eCheque in the Out going folder
             in = new FileInputStream(chequePath);
             out = new FileOutputStream(walletLocation + "/Out going/" + chequeName);
-            aesKey128.crypt(in, out, aesCipher);
+            AESCrypt.Crypt(in, out, aesCipher);
             in.close();
             out.close();
 
