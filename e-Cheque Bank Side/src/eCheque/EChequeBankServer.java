@@ -145,7 +145,6 @@ public class EChequeBankServer extends javax.swing.JFrame {
     }//GEN-LAST:event_jBStopMouseClicked
 
     private void jBStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBStartMouseClicked
-// TODO add your handling code here:
         if(!serverStartFlag){
             jTBankShell.append("\n\n>> Sever is going to start");
             
