@@ -78,7 +78,7 @@ public class SendChequeJFrame extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 51)));
 
-        ptpTransferJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PTP Transfer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        ptpTransferJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("PTP Transfer"));
 
         receiverURLAddressLabel.setText("Receiver URL / IP:");
 
@@ -112,7 +112,7 @@ public class SendChequeJFrame extends javax.swing.JFrame {
                         .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, timeoutEnabledCheckBox, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, receiverURLAddressLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 63, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 54, Short.MAX_VALUE)
                         .add(ptpTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, ptpTransferJPanelLayout.createSequentialGroup()
                                 .add(selectChequePTPButton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +147,7 @@ public class SendChequeJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        emailTransferJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "E-mail Transfer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(0, 0, 0)));
+        emailTransferJPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("E-mail Transfer"));
 
         receiverEmailAddressLabel.setText("Receiver e-mail address:");
 
@@ -188,14 +188,14 @@ public class SendChequeJFrame extends javax.swing.JFrame {
                     .add(receiverEmailAddressTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 28, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(receiverEmailAddressLabel))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(emailSelectedChequeLabel)
                     .add(emailSelectedChequeNameLabel))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(emailTransferJPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(zipSendChequeEmailButton)
                     .add(selectChequeEmailButton))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         statusTextArea.setColumns(20);
@@ -244,8 +244,8 @@ public class SendChequeJFrame extends javax.swing.JFrame {
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(485, 402));
-        setLocationRelativeTo(null);
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-485)/2, (screenSize.height-402)/2, 485, 402);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

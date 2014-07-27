@@ -3,8 +3,6 @@
  *
  * Created on June 10, 2007, 1:06 AM
  *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
  */
 
 package eCheque;
@@ -12,27 +10,40 @@ package eCheque;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.ServerSocket;
-import javax.swing.JOptionPane;
+
+
 /**
- *
+ * The BankServer class implements the container application which the Banking
+ * institute would run for their portion of the e-Cheque system.
+ * 
  * @author Saad
+ * Last edit: Paul
  */
 public class BankSever implements Runnable{
     private static final int SERVER_PORT = 8190;
     private ServerSocket serverSocket;
-    /** Creates a new instance of BankSever */
+    
+    
+    /**
+     * Instantiate a Bank Server. 
+     * @throws IOException if the network connection could not be established. 
+     * Check that your network is connected within the OS and that you can visit
+     * intra or internet pages.
+     */
     public BankSever() throws IOException{
         
         serverSocket = new ServerSocket(SERVER_PORT);
     }
     
-    
+    /**
+     * Runnable interface method.
+     */
     public void run(){
         try{
             while(true){
             
                 Socket incoming = serverSocket.accept();
-                Runnable chequeServer = new Echqueserver(incoming);
+                Runnable chequeServer = new BankServerProcessWorker(incoming);
                 Thread bankThreading = new Thread(chequeServer);
                 bankThreading.start();
             }
