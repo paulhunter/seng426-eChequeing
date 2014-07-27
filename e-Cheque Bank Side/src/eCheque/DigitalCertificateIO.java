@@ -1,19 +1,19 @@
 /**
  * DigitalCertificateIO.java
- * 
- * Created By: Unknown
- * Last Edit: Paul Hunter
- * 
+ *
+ * Created By: Unknown Last Edit: Paul Hunter
+ *
  * Last edit on 2014-JULY-20
- * 
+ *
  */
 package eCheque;
 
 import java.io.*;
 
 /**
- * The DigitalCertificateIO Class offers a static read and write method to 
- * serialize and deserialize a DigitalCerticate to and from storage. 
+ * The DigitalCertificateIO Class offers a static read and write method to
+ * serialize and deserialize a DigitalCerticate to and from storage.
+ *
  * @author Paul
  */
 public class DigitalCertificateIO {
@@ -81,6 +81,5 @@ public class DigitalCertificateIO {
         }
         return DC;
     }
-
 
 }

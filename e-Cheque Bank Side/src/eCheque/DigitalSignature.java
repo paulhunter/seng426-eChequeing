@@ -16,7 +16,7 @@ import java.security.*;
  * @author Basel
  */
 public class DigitalSignature {
-    private static String SIGNATURE_ALGORITHM = "SHA1withRSA";
+    private static final String SIGNATURE_ALGORITHM = "SHA1withRSA";
 
     /**
      * Signs data using a SHA1withRSA algorithm.
