@@ -1,5 +1,5 @@
 /*
- * cheque.java
+ * ECheque.java
  *
  * Created on March 27, 2007, 10:33 PM
  *
@@ -7,15 +7,16 @@
  * and open the template in the editor.
  */
 
-/**
- *
- * @author Basel
- */
 package eCheque;
 
 import java.io.Serializable;
 
-//this class  for inter data cheque form user
+/**
+ * The ECheque data structure contains all fields associated with a digital
+ * ECheque. It is the data structure which is transferred to represent the
+ * transfer of funds.
+ * @author Paul
+ */
 public class ECheque implements Serializable
 {
      private String accountholder;
@@ -29,10 +30,6 @@ public class ECheque implements Serializable
      private String earnday;
      private byte[] banksignature;
      private byte[] drawersiganure;
-     
-     
-     
-     
      
      //to ener data we use set function 
     /** Creates a new instance of ECheque */
