@@ -47,16 +47,6 @@ public class RegistrationJFrame extends javax.swing.JFrame
     public RegistrationJFrame()
     {
         pattern = Pattern.compile(IPADDRESS_PATTERN);
-        try
-        {
-            //TrendyLookAndFeel tlf = new TrendyLookAndFeel();
-            //tlf.setCurrentTheme( new com.Trendy.swing.plaf.Themes.TrendyOrangeTheme());
-            //UIManager.setLookAndFeel(tlf);
-        } catch (Exception e)
-        {
-            //JOptionPane.showMessageDialog(null,"System Error", "can not found themes", JOptionPane.ERROR_MESSAGE);
-        }
-
         pathFlag = false;
         initComponents();
     }
@@ -508,8 +498,6 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                                             dcObj);
                                                     Thread t = new Thread(client);
                                                     t.start();
-                                                    //JOptionPane.showMessageDialog(null,"Registeration Done\n\tYou have to restart your system","Confirm",
-                                                    //JOptionPane.INFORMATION_MESSAGE);
                                                 } catch (IOException exp)
                                                 {
                                                     JOptionPane.showMessageDialog(null, "Access Disk Media is not allowed", "System Error", JOptionPane.ERROR_MESSAGE);
