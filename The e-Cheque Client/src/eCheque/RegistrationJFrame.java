@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 public class RegistrationJFrame extends javax.swing.JFrame
 {
-
+    private static final int SERVER_PORT = 8190;
     private boolean pathFlag;
     private String eWalletPath;
     private static final String IPADDRESS_PATTERN =
@@ -504,7 +504,7 @@ public class RegistrationJFrame extends javax.swing.JFrame
                                                     DigitalCertificateIO.writeDigitalCertificate(dcObj, eWalletPath + "/Security Tools/" + registerationObj.getClientName() + "DigCert.edc");
 
                                                     //Connect to the bank server to activate the e-cheque account.
-                                                    Runnable client = new EchequeClient(8189, 0, registerationObj.getBankAddress(), registerationObj,
+                                                    Runnable client = new EchequeClient(SERVER_PORT, 0, registerationObj.getBankAddress(), registerationObj,
                                                             dcObj);
                                                     Thread t = new Thread(client);
                                                     t.start();

@@ -18,11 +18,12 @@ import javax.swing.JOptionPane;
  * @author Saad
  */
 public class BankSever implements Runnable{
+    private static final int SERVER_PORT = 8190;
     private ServerSocket serverSocket;
     /** Creates a new instance of BankSever */
     public BankSever() throws IOException{
         
-        serverSocket = new ServerSocket(8189);
+        serverSocket = new ServerSocket(SERVER_PORT);
     }
     
     

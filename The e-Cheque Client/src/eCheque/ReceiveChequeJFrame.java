@@ -21,7 +21,7 @@ import java.net.ServerSocket;
 
 
 public class ReceiveChequeJFrame extends javax.swing.JFrame {
-    
+     private static final int CLIENT_PORT = 8189;
      private EChequeRegisteration eChequeReg;
      private PrivateKey privKey;
      private ServerSocket serverSocket;
@@ -183,7 +183,7 @@ public class ReceiveChequeJFrame extends javax.swing.JFrame {
             
             //Initialize the server connection.
             if(!serverStartFlage){
-                serverSocket = new ServerSocket(8189);
+                serverSocket = new ServerSocket(CLIENT_PORT);
                 serverStartFlage = true;
             }
             //Start Server Thread.

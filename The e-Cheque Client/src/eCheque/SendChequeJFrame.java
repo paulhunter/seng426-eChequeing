@@ -18,7 +18,7 @@ import java.security.Key;
  * @version 0 JULY 2014
  */
 public class SendChequeJFrame extends javax.swing.JFrame {
-    private static int CLIENT_PORT = 8189;
+    private static final int CLIENT_PORT = 8189;
 
     private String chequePath;
     private EChequeRegisteration user;

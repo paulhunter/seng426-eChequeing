@@ -17,7 +17,7 @@ import java.io.IOException;
  * @version 0 JULY 2014
  */
 public class EBankingJFrame extends javax.swing.JFrame {
-    private static int CLIENT_PORT = 8189;
+    private static final int SERVER_PORT = 8190;
 
     private EChequeRegisteration user;
     private ECheque cheque;
@@ -285,11 +285,11 @@ public class EBankingJFrame extends javax.swing.JFrame {
         }
 
         if (depositCheckBox.isSelected()) {
-            client = new EchequeClient(CLIENT_PORT, 1, bankAddress, user, cheque);
+            client = new EchequeClient(SERVER_PORT, 1, bankAddress, user, cheque);
             clientThread = new Thread(client);
             clientThread.start();
         } else if (cancelCheckBox.isSelected()) {
-            client = new EchequeClient(CLIENT_PORT, 2, bankAddress, user, cheque);
+            client = new EchequeClient(SERVER_PORT, 2, bankAddress, user, cheque);
             clientThread = new Thread(client);
             clientThread.start();
         } else {
