@@ -7,9 +7,9 @@
 
 package eCheque;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import javax.swing.UIManager;
@@ -69,6 +69,7 @@ public class ElectronicChequeJFrame extends javax.swing.JFrame {
         loadUserInfo();
         eChequeConfigureWindow = new RegistrationJFrame();
         eChequeWindow = new ChequeJFrame(registerdUser);
+        eChequeWindow.setSize(new Dimension(850,300));
         sendChequeWindow = new SendChequeJFrame(registerdUser);
         eBankingWindow = new EBankingJFrame(registerdUser);
         privateKeyFlag = false;

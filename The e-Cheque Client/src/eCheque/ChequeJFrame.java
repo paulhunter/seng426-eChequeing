@@ -7,22 +7,22 @@
 
 package eCheque;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.GregorianCalendar;
-import javax.crypto.NullCipher;
-import javax.imageio.stream.FileImageInputStream;
-import javax.swing.UIManager;
 import javax.swing.JOptionPane;
 import java.security.*;
-import java.security.spec.KeySpec;
 import javax.crypto.Cipher;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 
 
 public class ChequeJFrame extends javax.swing.JFrame {
@@ -73,7 +73,28 @@ public class ChequeJFrame extends javax.swing.JFrame {
     public ChequeJFrame(EChequeRegisteration registerUser) {  
         initComponents();
         eChequeReg = registerUser;
-        newChequeFlag = false;
+        newChequeFlag = true;
+        
+        jPanel1.setPreferredSize(new Dimension(800,225));
+        
+        // Active cheque form
+        jTAmount.setEditable(true);
+        jTPayTo.setEditable(true);
+        jTYear.setEditable(true);
+        jTMonth.setEditable(true);
+        jTDay.setEditable(true);
+        jCGuaranteed.setEnabled(true);
+             
+        //set the user registeration data on the form
+        jLDrawerName.setText("    " + eChequeReg.getClientName());
+        jLBankName.setText("Bank Name: "+eChequeReg.getBankName());
+        jLAccountNum.setText("Account #: "+eChequeReg.getAccountNumber());
+            
+        //Generate the cheque serial number
+        jLSerialNumber.setText(generateSerialNumber()); 
+            
+        //Set check issue date
+        jLDate.setText("Date: "+ currentDate());
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
@@ -202,7 +223,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 51)));
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Drawer Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Drawer Name", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel2.setFont(new java.awt.Font("Times New Roman", 1, 12));
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
@@ -226,7 +247,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
         jLSerialNumber.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLSerialNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pay to the order of", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pay to the Order of", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel3.setFont(new java.awt.Font("Times New Roman", 1, 12));
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
@@ -267,7 +288,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
 
         jLBankName.setText("Bank Name:");
 
-        jLAccountNum.setText("Account no:");
+        jLAccountNum.setText("Account #:");
 
         org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -293,7 +314,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
         jCGuaranteed.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCGuaranteed.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jLEarnDate.setText("Earn Date:");
+        jLEarnDate.setText("Cash Date:");
 
         jLYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLYear.setText("Y");
@@ -359,7 +380,6 @@ public class ChequeJFrame extends javax.swing.JFrame {
             .add(17, 17, 17))))
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jLDate, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 132, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
             .add(28, 28, 28)))
             .add(10, 10, 10))
         );
@@ -373,7 +393,6 @@ public class ChequeJFrame extends javax.swing.JFrame {
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 16, Short.MAX_VALUE)
             .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
             .add(jPanel1Layout.createSequentialGroup()
-            .add(jLDate)
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
             .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -399,7 +418,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
             .addContainerGap())
         );
 
-        jMenu1.setText("Cheque");
+        jMenu1.setText("File");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -468,10 +487,10 @@ public class ChequeJFrame extends javax.swing.JFrame {
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-434)/2, (screenSize.height-340)/2, 434, 340);
+        setBounds((screenSize.width-432)/2, (screenSize.height-340)/2, 434, 340);
     }// </editor-fold>
 
-    // CLosing the window
+    // Closing the window
     private void close(java.awt.event.WindowEvent evt) {
         //Remove this function if not going to use when remade
     }
@@ -638,7 +657,7 @@ public class ChequeJFrame extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Incorect passowrd", "User Error", JOptionPane.ERROR_MESSAGE);
                         }   
                     }else{
-                        JOptionPane.showMessageDialog(null, "Complete the earn date info", "User Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Complete the cash date info", "User Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "You have to specify the cheque receiver", "User Error", JOptionPane.ERROR_MESSAGE);
@@ -662,9 +681,9 @@ public class ChequeJFrame extends javax.swing.JFrame {
         jCGuaranteed.setEnabled(true);
              
         //set the user registeration data on the form
-        jLDrawerName.setText(eChequeReg.getClientName());
+        jLDrawerName.setText("    " + eChequeReg.getClientName());
         jLBankName.setText("Bank Name: "+eChequeReg.getBankName());
-        jLAccountNum.setText("Account no: "+eChequeReg.getAccountNumber());
+        jLAccountNum.setText("Account #: "+eChequeReg.getAccountNumber());
             
         //Generate the cheque serial number
         jLSerialNumber.setText(generateSerialNumber()); 
@@ -695,11 +714,11 @@ public class ChequeJFrame extends javax.swing.JFrame {
             try{
                 // load cheque that already exist
                 oldCheque = loadCheque.readECheque(chequePath);
-                jLDrawerName.setText(oldCheque.getAccountHolder());
+                jLDrawerName.setText("    " +oldCheque.getAccountHolder());
                 jLBankName.setText("Bank Name: "+oldCheque.getBankName());
-                jLAccountNum.setText("Account no: "+oldCheque.getAccountNumber());
+                jLAccountNum.setText("Account #: "+oldCheque.getAccountNumber());
 
-                // to get the earn date
+                // to get the cash date
                 String []earnDate = oldCheque.getEarnDay().split(",");
                 jTYear.setText(earnDate[0]);
                 jTYear.setEditable(false);
