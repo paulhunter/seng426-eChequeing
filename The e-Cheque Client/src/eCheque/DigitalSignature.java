@@ -35,8 +35,10 @@ public class DigitalSignature {
 
         Signature signer = Signature.getInstance(SIGNATURE_ALGORITHM);
 
-        if (data == null || privateKey == null) {
-            return null;
+        if (data == null) {
+            throw new NullPointerException();
+        } else if (privateKey == null) {
+            throw new InvalidKeyException();
         }
 
         signer.initSign(privateKey);
@@ -64,8 +66,10 @@ public class DigitalSignature {
 
         Signature verifier = Signature.getInstance(SIGNATURE_ALGORITHM);
 
-        if (data == null || publicKey == null) {
-            return false;
+        if (data == null) {
+            throw new NullPointerException();
+        } else if (publicKey == null) {
+            throw new InvalidKeyException();
         }
 
         verifier.initVerify(publicKey);
