@@ -213,7 +213,7 @@ public class EChequeDB {
      * @return true if account existed, false otherwise.
      */
     public static boolean GetAccountFromCheque(ECheque cheque, double[] balance) {
-        String withdrawStat = "Select balance from accounts where accountID =" + cheque.getaccountNumber();
+        String withdrawStat = "Select balance from accounts where accountID =" + cheque.getAccountNumber();
         return getInstance().runDB(0, withdrawStat, balance);
     }
 
@@ -225,7 +225,7 @@ public class EChequeDB {
      * @return True if it was cancelled, false otherwise.
      */
     public static boolean IsChequeCancelled(ECheque cheque) {
-        String withdrawStat = "Select * from cancelledCheque where accountID ='" + cheque.getaccountNumber() + "'and chequeID ='" + cheque.getchequeNumber() + "'";
+        String withdrawStat = "Select * from cancelledCheque where accountID ='" + cheque.getAccountNumber() + "'and chequeID ='" + cheque.getChequeNumber() + "'";
         return getInstance().runDB(withdrawStat, 0);
     }
 
@@ -239,7 +239,7 @@ public class EChequeDB {
      * @return True if the check has been cashed, false otherwise.
      */
     public static boolean HasChequeBeenCashed(ECheque cheque) {
-        String withdrawStat = "Select * from eChequeOut where chequeID='" + cheque.getchequeNumber() + "'and accountID='" + cheque.getaccountNumber() + "'";
+        String withdrawStat = "Select * from eChequeOut where chequeID='" + cheque.getChequeNumber() + "'and accountID='" + cheque.getAccountNumber() + "'";
         return getInstance().runDB(withdrawStat, 0);
     }
 
@@ -252,7 +252,7 @@ public class EChequeDB {
      */
     public static boolean CancelCheque(ECheque cheque) {
         String cancelChequeStat = "insert into cancelledCheque (accountID,chequeID) values('"
-                + cheque.getaccountNumber() + "','" + cheque.getchequeNumber() + "')";
+                + cheque.getAccountNumber() + "','" + cheque.getChequeNumber() + "')";
         return getInstance().runDB(1, cancelChequeStat);
     }
 
@@ -265,18 +265,18 @@ public class EChequeDB {
      */
     public static boolean DepositCheque(ECheque cheque, String account) {
         try {
-            String withdrawStat = "Update accounts set balance = balance -" + cheque.getMoney() + "where accountID =" + cheque.getaccountNumber();
+            String withdrawStat = "Update accounts set balance = balance -" + cheque.getAmountOfMoney() + "where accountID =" + cheque.getAccountNumber();
             getInstance().runDB(1, withdrawStat);
-            withdrawStat = "Update accounts set balance = balance +" + cheque.getMoney() + "where accountID =" + account;
+            withdrawStat = "Update accounts set balance = balance +" + cheque.getAmountOfMoney() + "where accountID =" + account;
             getInstance().runDB(1, withdrawStat);
 
             // update cheque out and in table
-            String cheqUpdate = "Insert into eChequeOut(chequeID, accountID, balance) values(" + "'" + cheque.getchequeNumber()
-                    + "','" + cheque.getaccountNumber() + "'," + cheque.getMoney() + ")";
+            String cheqUpdate = "Insert into eChequeOut(chequeID, accountID, balance) values(" + "'" + cheque.getChequeNumber()
+                    + "','" + cheque.getAccountNumber() + "'," + cheque.getAmountOfMoney() + ")";
             getInstance().runDB(1, cheqUpdate);
 
-            cheqUpdate = "Insert into eChequeIN(chequeID, accountID, balance) values(" + "'" + cheque.getchequeNumber()
-                    + "','" + cheque.getaccountNumber() + "'," + cheque.getMoney() + ")";
+            cheqUpdate = "Insert into eChequeIN(chequeID, accountID, balance) values(" + "'" + cheque.getChequeNumber()
+                    + "','" + cheque.getAccountNumber() + "'," + cheque.getAmountOfMoney() + ")";
             getInstance().runDB(1, cheqUpdate);
             return true;
         } catch (Exception e) {

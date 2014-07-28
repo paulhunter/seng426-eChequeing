@@ -120,7 +120,7 @@ public class BankServerProcessWorker implements Runnable {
 
         //check the withdraw account. 
         double[] balanceValue = new double[1];
-        double chequeMoney = Double.parseDouble(recivedCehq.getMoney());
+        double chequeMoney = Double.parseDouble(recivedCehq.getAmountOfMoney());
         if (!EChequeDB.GetAccountFromCheque(recivedCehq, balanceValue)) {
             depositResult = "This eCheque does not appear to belong to one of our customers\nYou will need to conenct with their bank to deposit the cheque.";
         } else if (chequeMoney > balanceValue[0]) {
@@ -131,7 +131,7 @@ public class BankServerProcessWorker implements Runnable {
             depositResult = "This eCheque has already been deposited. Sorry, we can not deposit it twice.";
         } else {
             EChequeDB.DepositCheque(recivedCehq, depositAccount);
-            depositResult = "Your acoount recieves the deposit.\nYour balance is incremented by" + recivedCehq.getMoney();
+            depositResult = "Your acoount recieves the deposit.\nYour balance is incremented by" + recivedCehq.getAmountOfMoney();
         }
 
         clientOutputObjectStream.writeObject(depositResult);
